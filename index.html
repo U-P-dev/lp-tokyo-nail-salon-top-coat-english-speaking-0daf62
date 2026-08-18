@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tokyo Nail Salon Top Coat - English Speaking | ネイルサロンのランディングページ</title>
+
+<style>
+  :root{
+    --paper:#ffffff;
+    --ink:#46516e;          
+    --ink-soft:#8b93a7;
+    --line:#eef1f5;
+    --line-2:#ccd2db;
+    --slot-bg:rgba(70,81,110,.045);
+    --slot-line:#b7bfce;
+    --g1:#d9cfbb; --g2:#c8b5ab; --g3:#a6b4c7; --g4:#7394b2; --g5:#566888;
+    --en:Georgia,"Times New Roman",serif;                  
+    --jp:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--jp);font-size:15px;
+    line-height:2.6;letter-spacing:.05em;
+    font-feature-settings:"palt";
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%}
+  a{color:var(--ink);text-decoration:none}
+
+  
+  .ph{position:relative;overflow:hidden;background:#e7e4dd}
+  .ph::after{ 
+    content:attr(data-slot);position:absolute;right:10px;bottom:8px;
+    font-family:var(--en);font-size:10px;letter-spacing:.18em;
+    color:rgba(70,81,110,.55);background:rgba(255,255,255,.72);
+    padding:3px 10px;border:1px dashed var(--slot-line);border-radius:2px;
+    line-height:1.6;white-space:nowrap}
+
+  
+  header{
+    position:fixed;inset:0 0 auto 0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 4vw;background:rgba(255,255,255,.92);
+    border-bottom:1px solid var(--line);backdrop-filter:blur(6px);
+  }
+  .brand{font-family:var(--en);font-size:17px;letter-spacing:.3em}
+  nav{display:flex;gap:34px;align-items:center}
+  nav a{font-family:var(--en);font-size:12px;letter-spacing:.22em;opacity:.85}
+  nav a:hover{opacity:.5;transition:opacity .4s}
+  .reserve-link{border:1px solid var(--ink);padding:9px 26px;border-radius:2px;
+    font-size:12px;letter-spacing:.22em;transition:opacity .4s}
+  .reserve-link:hover{opacity:.5}
+
+  
+  .hero{display:flex;flex-direction:row-reverse;min-height:100vh;
+    padding:4vw;gap:0;background:var(--paper);position:relative}
+  .hero__photo{flex:1 1 50%;position:relative;min-height:520px}
+  
+  .hero__photo .slide{position:absolute;inset:0}
+  
+  .hero__photo .s1{opacity:1;animation:reveal 2.4s ease-out both}
+  @keyframes reveal{from{opacity:0}to{opacity:1}}
+  .hero__photo .s2{opacity:0;animation:xfade-b 18s ease-in-out infinite}
+  .hero__photo .s3{opacity:0;animation:xfade-c 18s ease-in-out infinite}
+  .s1{background:
+    radial-gradient(120% 90% at 78% 18%,rgba(255,252,244,.85) 0%,rgba(255,252,244,0) 55%),
+    linear-gradient(158deg,#e6e0d3 0%,#cdd3dc 62%,#b9c2cf 100%)}
+  .s2{background:
+    radial-gradient(110% 80% at 22% 80%,rgba(250,244,232,.8) 0%,rgba(250,244,232,0) 60%),
+    linear-gradient(202deg,#ded6c6 0%,#b7c1d0 70%,#a8b2c2 100%)}
+  .s3{background:
+    radial-gradient(130% 95% at 60% 8%,rgba(253,250,243,.9) 0%,rgba(253,250,243,0) 50%),
+    linear-gradient(146deg,#e2dccf 0%,#c2bcc7 58%,#adaebf 100%)}
+  
+  @keyframes xfade-b{
+    0%,33.3%{opacity:0} 41.1%{opacity:1} 74.4%{opacity:1}
+    74.5%,100%{opacity:0}}
+  
+  @keyframes xfade-c{
+    0%,66.7%{opacity:0} 74.4%{opacity:1} 92.2%{opacity:1} 100%{opacity:0}}
+  .hero__logo{flex:1 1 50%;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:26px;text-align:center;
+    animation:reveal 1.6s ease-out .5s both}  
+  .hero__mark{font-family:var(--en);font-size:44px;letter-spacing:.42em;
+    text-indent:.42em;line-height:1.4}
+  .hero__sub{font-size:12px;letter-spacing:.5em;text-indent:.5em;color:var(--ink-soft)}
+  .hero__scroll{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);
+    font-family:var(--en);font-size:10px;letter-spacing:.34em;color:var(--ink-soft)}
+  .hero__scroll::after{content:"";display:block;width:1px;height:44px;
+    background:var(--line-2);margin:10px auto 0}
+
+  
+  main{overflow:clip}
+  section{max-width:1080px;margin:0 auto;padding:0 4vw}
+  .gap-l{margin-top:clamp(120px,17vh,220px)}
+  .gap-m{margin-top:clamp(90px,12vh,150px)}
+  .eyebrow{font-family:var(--en);font-size:12px;letter-spacing:.4em;
+    color:var(--ink-soft);margin-bottom:14px}
+  h2{font-size:22px;font-weight:500;line-height:3;letter-spacing:.14em}
+  .lead{margin-top:18px;max-width:34em}
+
+  
+  .split{display:flex;gap:8%;align-items:flex-start}
+  .split.rev{flex-direction:row-reverse}
+  .split__text{flex:0 1 46%}
+  .split__duo{flex:0 1 46%;display:flex;gap:6%}
+  .split__duo .ph{flex:0 0 47%;aspect-ratio:3/4}
+  .split__duo .ph:nth-child(2){margin-top:120px}
+  .more{display:inline-block;margin-top:28px;font-family:var(--en);
+    font-size:11px;letter-spacing:.3em;border-bottom:1px solid var(--ink);
+    padding-bottom:6px}
+  .more::after{content:"  →"}
+  .more:hover{opacity:.5;transition:opacity .4s}
+
+  
+  .menu-list{margin-top:26px;max-width:33em}
+  .menu-list li{display:flex;align-items:baseline;gap:1em;
+    padding:13px 2px;border-bottom:1px solid var(--line);list-style:none}
+  .menu-list .nm{flex:0 0 auto}
+  .menu-list .dots{flex:1 1 auto;border-bottom:1px dotted var(--line-2);
+    transform:translateY(-6px)}
+  .menu-list .pr{flex:0 0 auto;font-family:var(--en);letter-spacing:.08em}
+  .menu-note{margin-top:14px;font-size:12px;color:var(--ink-soft)}
+
+  
+  .oneday{position:relative;max-width:none;padding:0;margin-top:clamp(160px,22vh,260px)}
+  .oneday__bg{aspect-ratio:21/9;min-height:520px;width:100%}
+  
+  .oneday__circle{position:absolute;top:-70px;left:0;right:0;margin:0 auto;
+    width:min(620px,86vw);aspect-ratio:1;border-radius:50%;background:var(--paper);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:9%;gap:14px}
+  .oneday__circle h2{line-height:2.4}
+  .oneday__circle p{font-size:14px;max-width:24em}
+
+  
+  .info{display:flex;gap:8%;align-items:flex-start}
+  .info dl{flex:0 1 46%}
+  .info dl div{display:flex;border-bottom:1px solid var(--line);padding:14px 2px}
+  .info dt{flex:0 0 7.5em;color:var(--ink-soft);font-size:13px}
+  .info dd{flex:1}
+  .info .ph{flex:0 1 46%;aspect-ratio:4/3}
+
+  
+  .reserve-band{max-width:none;padding:0;margin-top:clamp(140px,18vh,230px)}
+  .reserve-band a{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:16px;min-height:300px;color:#fff;text-align:center;
+    background:linear-gradient(115deg,var(--g1),var(--g2),var(--g3),var(--g4),var(--g5));
+    background-size:320% 320%;animation:grad 16s ease-in-out infinite alternate}
+  @keyframes grad{0%{background-position:0% 40%}100%{background-position:100% 60%}}
+  .reserve-band .big{font-family:var(--en);font-size:30px;letter-spacing:.42em;
+    text-indent:.42em}
+  .reserve-band .big::after{content:"  →";font-size:22px}
+  .reserve-band .tel{font-size:14px;letter-spacing:.18em}
+  
+  .reserve-band a{position:relative}
+  .reserve-band a::after{content:"";position:absolute;inset:0;background:#fff;
+    opacity:0;transition:opacity .5s}
+  .reserve-band a:hover::after{opacity:.4}
+  .reserve-band a>*{position:relative;z-index:1}
+
+  
+  footer{margin-top:0;padding:70px 4vw 110px;text-align:center;
+    border-top:1px solid var(--line)}
+  footer .brand{display:block;margin-bottom:18px}
+  footer p{font-size:12.5px;color:var(--ink-soft);line-height:2.2}
+  footer small{display:block;margin-top:30px;font-family:var(--en);
+    font-size:10px;letter-spacing:.25em;color:var(--ink-soft)}
+
+  
+  .sp-bar{display:none}
+  @media(max-width:820px){
+    nav a:not(.reserve-link){display:none}
+    .hero{flex-direction:column-reverse;padding:0;padding-top:64px;min-height:auto}
+    .hero__photo{min-height:56vh;flex:none;width:100%}
+    .hero__logo{padding:56px 6vw 70px;flex:none}
+    .hero__scroll{display:none}
+    .split,.split.rev{flex-direction:column;gap:44px}
+    .split__duo .ph:nth-child(2){margin-top:56px}
+    .info{flex-direction:column;gap:44px}
+    .info dl,.info .ph{width:100%;flex:none}
+    .oneday__circle{position:static;transform:none;margin:-70px auto 0}
+    .oneday__bg{aspect-ratio:4/3;min-height:0}
+    .sp-bar{display:flex;position:fixed;inset:auto 0 0 0;z-index:60}
+    .sp-bar a{flex:1;text-align:center;padding:15px 0;font-size:13px;
+      letter-spacing:.2em;color:#fff;background:var(--ink)}
+    .sp-bar a+a{border-left:1px solid rgba(255,255,255,.25)}
+    body{padding-bottom:52px}
+  }
+
+  
+  
+  .fade-up{opacity:0;transform:translate(0,50px);
+    transition:opacity 1s ease-in-out,transform 1s ease-in-out}
+  .fade-up.show{opacity:1;transform:translate(0,0)}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .hero__photo .slide:first-child{opacity:1}
+    .fade-up{opacity:1;transform:none}
+    html{scroll-behavior:auto}
+  }
+
+  @media(max-width:820px){}
+  .spec{max-width:1080px;margin:90px auto 60px;padding:34px 4vw;
+    border:1px dashed var(--slot-line);background:var(--slot-bg);
+    font-size:12.5px;line-height:2.1;color:var(--ink);overflow-x:auto}
+  .spec h3{font-size:13px;letter-spacing:.2em;margin-bottom:10px}
+  .spec table{border-collapse:collapse;width:100%;margin:10px 0}
+  .spec td,.spec th{border:1px solid var(--line-2);padding:5px 12px;
+    text-align:left;font-weight:normal;font-size:12px}
+
+
+.ph::after,.ph::before{content:none!important;display:none!important}
+.ph{border:0!important;background:transparent!important}
+.ph>img,.ph .slide>img{width:100%;height:100%;object-fit:cover;display:block}
+.ph .slide{background-size:cover;background-position:center}
+</style>
+<meta name="description" content="ネイルサロンのTokyo Nail Salon Top Coat - English Speaking。4th floor, ２丁目-２７-2 北沢 世田谷区 東京都 155-0031 日本にて営業中。お気軽にお問い合わせください。">
+<meta property="og:title" content="Tokyo Nail Salon Top Coat - English Speaking">
+<meta property="og:description" content="ネイルサロンのTokyo Nail Salon Top Coat - English Speaking。4th floor, ２丁目-２７-2 北沢 世田谷区 東京都 155-0031 日本">
+<meta property="og:type" content="website">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="./">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "Tokyo Nail Salon Top Coat - English Speaking", "address": {"@type": "PostalAddress", "streetAddress": "4th floor, ２丁目-２７-2 北沢 世田谷区 東京都 155-0031 日本"}, "telephone": "070-4490-3918"}</script>
+<style>
+nav.vbar{position:relative !important;z-index:10000 !important;display:block !important;
+  background:#1c1c1c !important;color:#fff !important;margin:0 !important;
+  padding:12px 0 !important;font-size:13px !important;line-height:1.7 !important;
+  font-family:sans-serif !important;max-width:none !important;
+  opacity:1 !important;visibility:visible !important;transform:none !important}
+nav.vbar .vbar__inner{max-width:1080px !important;margin:0 auto !important;
+  padding:0 20px !important;display:flex !important;flex-wrap:wrap !important;
+  gap:10px 18px !important;align-items:center !important;width:auto !important}
+nav.vbar .vbar__note{opacity:.75 !important;flex:1 1 260px !important;
+  min-width:0 !important;color:#fff !important}
+nav.vbar .vbar__list{display:flex !important;flex-wrap:wrap !important;gap:8px !important;
+  list-style:none !important;margin:0 !important;padding:0 !important}
+nav.vbar .vbar__list li{display:block !important;margin:0 !important;padding:0 !important;
+  list-style:none !important;width:auto !important}
+nav.vbar .vbar__link{display:inline-block !important;color:#fff !important;
+  text-decoration:none !important;padding:6px 14px !important;font-size:13px !important;
+  border-radius:999px !important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4) !important;
+  background:transparent !important;opacity:1 !important;visibility:visible !important;
+  transform:none !important;letter-spacing:normal !important}
+nav.vbar .vbar__link[aria-current]{background:#fff !important;color:#1c1c1c !important;
+  font-weight:700 !important;box-shadow:none !important}
+@media (max-width:520px){
+  nav.vbar{padding:8px 0 !important;font-size:12px !important;line-height:1.5 !important}
+  nav.vbar .vbar__inner{padding:0 14px !important;gap:8px 10px !important}
+  nav.vbar .vbar__link{padding:5px 10px !important;font-size:12px !important}
+}
+#contact{padding:72px 20px}
+#contact .narrow{max-width:560px;margin:0 auto}
+#contact .cta h2{font-size:24px;margin:0 0 12px}
+#contact .cta__body{margin:0 0 24px;line-height:1.9}
+#contact .cta__actions{margin:0 0 28px}
+#contact .hero__actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+#contact .form{display:grid;gap:18px;text-align:left}
+#contact .field{display:grid;gap:8px}
+#contact .field label{font-size:14px;font-weight:700}
+#contact .field input,#contact .field textarea{font:inherit;color:#1c1c1c;
+  background:#fff;border:1px solid rgba(0,0,0,.3);border-radius:6px;padding:12px 14px}
+#contact .field textarea{min-height:150px;resize:vertical}
+#contact .btn{display:inline-flex;align-items:center;gap:8px;font:inherit;
+  color:#fff;background:#1c1c1c;border:0;border-radius:6px;padding:14px 26px;
+  text-decoration:none;cursor:pointer}
+#contact .btn--ghost{color:#1c1c1c;background:transparent;
+  box-shadow:inset 0 0 0 1.5px #1c1c1c}
+#contact .ic{flex:none}
+#contact .form__note{font-size:12px;opacity:.7;margin:0}
+#contact .form__done{display:none}
+/* 値の入らなかった任意欄は行ごと畳む（テンプレの「無ければ行ごと削る」の実装。
+   :has() 非対応のブラウザでは従来どおり空欄が残るだけで、悪化はしない） */
+dd:empty{display:none !important}
+div:has(> dd:empty){display:none !important}
+#privacy-policy{padding:56px 20px;font-size:13px;line-height:2}
+#privacy-policy .narrow{max-width:720px;margin:0 auto}
+#privacy-policy h2{font-size:18px;margin:0 0 16px}
+#privacy-policy h3{font-size:14px;margin:20px 0 6px}
+</style>
+</head>
+<body>
+<nav class="vbar" aria-label="デザイン案の切り替え"><div class="wrap vbar__inner"><span class="vbar__note">エレノアがTokyo Nail Salon Top Coat - English Speaking様へのご提案として作成した見本です。Tokyo Nail Salon Top Coat - English Speaking様ご自身が公開されているものではありません。</span><ul class="vbar__list"><li><a class="vbar__link" href="./" aria-current="page">1　静謐な空気</a></li><li><a class="vbar__link" href="2/">2　静かな信頼</a></li><li><a class="vbar__link" href="3/">3　作品で選ぶ（リッチプラン専用デザイン）</a></li></ul></div></nav>
+
+<header>
+  <span class="brand">
+    Top Coat
+  </span>
+  <nav>
+    <a href="#about">ABOUT</a>
+    <a href="#salon">SALON</a>
+    <a href="#menu">MENU</a>
+    <a href="#access">ACCESS</a>
+    <a class="reserve-link" href="#reserve">RESERVATION</a>
+  </nav>
+</header>
+
+<main>
+
+  
+  <div class="hero">
+    <div class="hero__photo ph">
+      <div class="slide s1"><img src="https://images.unsplash.com/photo-1619607146034-5a05296c8f9a?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8MXx8bmFpbCUyMHNhbG9uJTIwaW50ZXJpb3J8ZW58MXwxfHx8MTc4NzA2MjY5Nnww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="店内・光・道具（クロスフェード）" loading="eager" fetchpriority="high" decoding="async"></div>
+      <div class="slide s2"><img src="https://images.unsplash.com/photo-1534004471323-19f1a470c4c1?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Mnx8bmFpbCUyMHNhbG9uJTIwaW50ZXJpb3J8ZW58MXwxfHx8MTc4NzA2MjY5Nnww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="店内・光・道具（クロスフェード）" loading="lazy" decoding="async"></div>
+      <div class="slide s3"><img src="https://images.unsplash.com/photo-1612887390768-fb02affea7a6?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Nnx8bmFpbCUyMHNhbG9ufGVufDF8MXx8fDE3ODcwNjI2OTd8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="店内・光・道具（クロスフェード）" loading="lazy" decoding="async"></div>
+    </div>
+    <div class="hero__logo">
+      <div class="hero__mark">
+        Tokyo Nail Salon Top Coat - English Speaking
+      </div>
+      <div class="hero__sub">
+        Tokyo Nail Salon Top Coat - English Speaking
+      </div>
+    </div>
+    <div class="hero__scroll">SCROLL</div>
+  </div>
+
+  
+  <section id="about" class="gap-l">
+    <div class="split">
+      <div class="split__text fade-up">
+        <p class="eyebrow">ABOUT</p>
+        <h2>
+          指先に、ととのう時間を。<br>北沢のちいさなネイルサロン
+        </h2>
+        <p class="lead">
+          Tokyo Nail Salon Top Coat - English Speaking は、東京都世田谷区北沢のネイルサロンです。日本語でも英語でも、ご希望の色や形をゆっくり伺いながら仕上げます。毎日10時から21時まで営業していますので、お仕事帰りにも、休日の午後にもお立ち寄りいただけます。
+        </p>
+        <a class="more" href="#salon">VIEW MORE</a>
+      </div>
+      <div class="split__duo">
+        <div class="ph fade-up"><img src="https://images.unsplash.com/photo-1571290274554-6a2eaa771e5f?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8N3x8bmFpbCUyMHNhbG9ufGVufDF8MXx8fDE3ODcwNjI2OTd8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="店内の抜け" loading="lazy" decoding="async"></div>
+        <div class="ph fade-up"><img src="https://images.unsplash.com/photo-1599206676335-193c82b13c9e?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8NHx8bmFpbCUyMHNhbG9uJTIwaGFuZHMlMjBjbG9zZXVwfGVufDF8MXx8fDE3ODcwNjI2OTV8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="手元・道具" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="salon" class="gap-l">
+    <div class="split rev">
+      <div class="split__text fade-up">
+        <p class="eyebrow">SALON</p>
+        <h2>
+          席にすわると、<br>肩の力がほどけていく。
+        </h2>
+        <p class="lead">
+          施術は着席したまま、手元の明かりのもとで進みます。色見本を並べて迷う時間も、指先が少しずつ変わっていく時間も、この場所の一部です。会話をたのしむ方にも、静かに過ごしたい方にも、それぞれの間合いでお過ごしいただけるよう心がけています。
+        </p>
+      </div>
+      <div class="split__duo">
+        <div class="ph fade-up"><img src="https://images.unsplash.com/photo-1610992015836-7c249d75782d?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8OHx8bmFpbCUyMHNhbG9ufGVufDF8MXx8fDE3ODcwNjI2OTd8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="セット面" loading="lazy" decoding="async"></div>
+        <div class="ph fade-up"><img src="https://images.unsplash.com/photo-1604902396830-aca29e19b067?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8OXx8bmFpbCUyMHNhbG9ufGVufDF8MXx8fDE3ODcwNjI2OTd8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="窓辺・植物" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="menu" class="gap-l">
+    <div class="fade-up">
+      <p class="eyebrow">MENU</p>
+      <h2>メニュー</h2>
+      <ul class="menu-list">
+        <li><span class="nm">ハンドジェルネイル ワンカラー</span><span class="dots"></span><span class="pr">—</span></li>
+        <li><span class="nm">ハンドジェルネイル デザイン</span><span class="dots"></span><span class="pr">—</span></li>
+        <li><span class="nm">フットジェルネイル</span><span class="dots"></span><span class="pr">—</span></li>
+        <li><span class="nm">ジェルオフ・ケア</span><span class="dots"></span><span class="pr">—</span></li>
+      </ul>
+      <p class="menu-note">
+        料金は店頭およびお電話・メールでご案内しています。所要時間の目安は、ワンカラーで約60分、デザインを加える場合は約90分から120分です。オフのみをご希望の場合は別途お時間をいただきます。
+      </p>
+    </div>
+  </section>
+
+  
+  <section class="oneday">
+    <div class="oneday__circle fade-up">
+      <p class="eyebrow">ONE DAY</p>
+      <h2>北沢の一日</h2>
+      <p>
+        朝は静かな住宅街に、昼はゆるやかな人通り。夕方には仕事を終えた方が立ち寄り、閉店前のひとときまで灯りがともります。北沢のこの場所で、指先をととのえる時間をお過ごしください。
+      </p>
+    </div>
+    <div class="oneday__bg ph"><img src="https://images.unsplash.com/photo-1706973664225-3c23fd7d1d91?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8N3x8bmFpbCUyMHNhbG9uJTIwc3RvcmVmcm9udCUyMGV4dGVyaW9yfGVufDF8MHx8fDE3ODcwNjI2OTR8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="外観 or 店内の引き" loading="lazy" decoding="async"></div>
+  </section>
+
+  
+  <section id="access" class="gap-l">
+    <div class="info">
+      <div class="fade-up" style="flex:0 1 46%">
+        <p class="eyebrow">INFORMATION</p>
+        <dl>
+          <div><dt>住所</dt><dd>4th floor, ２丁目-２７-2 北沢 世田谷区 東京都日本</dd></div>
+          <div><dt>電話</dt><dd>070-4490-3918</dd></div>
+          <div><dt>営業時間</dt><dd>10:00〜21:00</dd></div>
+          <div><dt>定休日</dt><dd>—</dd></div>
+          <div><dt>アクセス</dt><dd>—</dd></div>
+        </dl>
+      </div>
+      <div class="ph fade-up"><img src="https://images.unsplash.com/photo-1665844237358-a8e2c67121f3?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8OHx8bmFpbCUyMHNhbG9uJTIwc3RvcmVmcm9udCUyMGV4dGVyaW9yfGVufDF8MHx8fDE3ODcwNjI2OTR8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="外観" loading="lazy" decoding="async"></div>
+    </div>
+  </section>
+
+  
+  <section id="reserve" class="reserve-band">
+    <a href="#reserve" aria-label="予約する">
+      <span class="big">RESERVATION</span>
+      <span class="tel">
+        070-4490-3918
+      </span>
+    </a>
+  </section>
+
+</main>
+
+<footer>
+  <span class="brand">Tokyo Nail Salon Top Coat - English Speaking</span>
+  <p>
+    4th floor, ２丁目-２７-2 北沢 世田谷区 東京都日本<br>070-4490-3918 10:00〜21:00
+  </p>
+  <small>© Tokyo Nail Salon Top Coat - English Speaking</small>
+</footer>
+
+<div class="sp-bar">
+  <a href="tel:0300000000">電話で予約</a>
+  <a href="#reserve">WEB予約</a>
+</div>
+
+<script>
+  // スクロール出現（IntersectionObserver）
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
+  },{threshold:.15});
+  document.querySelectorAll('.fade-up').forEach(function(el){ io.observe(el); });
+
+</script>
+<p class="photo-credit" style="font-size:11px;text-align:center;padding:12px 16px;margin:0">Photo by <a href="https://unsplash.com/@hngstrm?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">H&amp;CO</a>、<a href="https://unsplash.com/@designecologist?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">DESIGNECOLOGIST</a>、<a href="https://unsplash.com/@jojobean24?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Jodene Isakowitz</a>、<a href="https://unsplash.com/@buudkaanaa?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Budka Damdinsuren</a>、<a href="https://unsplash.com/@sweetspotphoto?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Jesse Donoghoe</a>、<a href="https://unsplash.com/@jd_chon?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Chelson Tamares</a>、<a href="https://unsplash.com/@kartikgada?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">KARTIK GADA</a>、<a href="https://unsplash.com/@gnaiq?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Cheung Gnaiq</a>、<a href="https://unsplash.com/@nichiyoshi?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Nichika Sakurai</a> on <a href="https://unsplash.com/?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></p>
+<section id="privacy-policy" class="legal">
+  <div class="narrow">
+    <h2>プライバシーポリシー</h2>
+    <p>Tokyo Nail Salon Top Coat - English Speaking（所在地：4th floor, ２丁目-２７-2 北沢 世田谷区 東京都 155-0031 日本）は、お客様の個人情報保護に努めます。</p>
+    <h3>収集する情報</h3>
+    <p>お問い合わせフォームより氏名・メールアドレス・お問い合わせ内容を収集します。</p>
+    <h3>Cookieと解析ツール</h3>
+    <p>当サイトはGoogle Analytics・Microsoft Clarityを使用してアクセス解析を行っています。これらのツールはCookieを使用します。</p>
+    <h3>お問い合わせ</h3>
+    <p>個人情報に関するお問い合わせは contact@eleanor-dev.com までご連絡ください。</p>
+  </div>
+</section>
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#333;color:#fff;padding:12px 20px;z-index:9999;text-align:center;font-size:14px;">
+  本サイトはGoogle Analytics・Microsoft Clarityを使用しています。
+  <a href="#privacy-policy" style="color:#adf;">プライバシーポリシー</a>
+  <button onclick="document.getElementById('cookie-banner').style.display='none';localStorage.setItem('cookie_ok','1')" style="margin-left:16px;background:#3498db;color:#fff;border:none;padding:6px 16px;cursor:pointer;border-radius:4px;">同意する</button>
+</div>
+<script>if(!localStorage.getItem('cookie_ok'))document.getElementById('cookie-banner').style.display='block';</script>
+<script data-vbar-offset>
+(function(){
+  var bar = document.querySelector('nav.vbar');
+  if (!bar) return;
+  var pinned = [];
+  var scan = function(){
+    pinned = [];
+    var all = document.body.querySelectorAll('*');
+    for (var i = 0; i < all.length; i++) {
+      var el = all[i];
+      if (el === bar || bar.contains(el)) continue;
+      var cs = getComputedStyle(el);
+      if (cs.position !== 'fixed') continue;
+      /* 元の top は一度だけ測って覚える。再スキャンで**自分が書いた値**を
+         読むと「top が 60 を超えたから対象外」と判定してしまい、
+         下げたきり追随が止まる（2026-08-15 実測） */
+      var top = el.__vbarTop;
+      if (top === undefined) {
+        top = parseFloat(cs.top);
+        if (isNaN(top) || top > 60) continue;
+        el.__vbarTop = top;
+      }
+      if (el.getBoundingClientRect().height >= innerHeight * 0.9) continue;
+      pinned.push({el: el, top: top});
+    }
+  };
+  var sync = function(){
+    var d = Math.max(0, bar.getBoundingClientRect().bottom);
+    for (var i = 0; i < pinned.length; i++) {
+      pinned[i].el.style.top = (pinned[i].top + d) + 'px';
+    }
+  };
+  var refresh = function(){ scan(); sync(); };
+  addEventListener('scroll', sync, {passive: true});
+  addEventListener('resize', refresh);
+  addEventListener('load', refresh);
+  refresh();
+})();
+</script>
+</body>
+</html>
