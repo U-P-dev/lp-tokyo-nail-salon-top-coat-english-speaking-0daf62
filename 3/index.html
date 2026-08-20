@@ -8,305 +8,291 @@
 <style>
   :root{
     --paper:#ffffff;
-    --paper-2:#f2f2f2;       
-    --ink:#0d0d0d;
-    --ink-soft:#666666;      
-    --line:#d9d9d9;
-    --line-2:#bdbdbd;
-    --slot-bg:rgba(13,13,13,.04);
+    --ink:#1f1f1f;           
+    --ink-soft:#6f6f6f;
+    --ghost:#edf1f3;         
+    --line:#e3e3e3;
+    --line-2:#c9c9c9;
+    --slot-bg:rgba(31,31,31,.04);
     --slot-line:#b5bcc4;
-    --en:"Roboto Condensed","Arial Narrow",Arial,Helvetica,sans-serif;
-    --jp:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic",sans-serif;
-    --ease-wipe:cubic-bezier(.21,1.06,.93,.96);
-    --ease-out:cubic-bezier(.22,1,.36,1);
+    --slot-edge:#8e99a4;     
+    --en:Georgia,"Times New Roman",serif;              
+    --jp:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic",sans-serif;
+    --ease-craft:cubic-bezier(.23,1,.32,1);
+    
+    --vh-cap:100vh;
   }
+  @media(min-height:1400px){:root{--vh-cap:1400px}}
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
     background:var(--paper);color:var(--ink);
     font-family:var(--jp);font-size:14px;
-    line-height:2.15;letter-spacing:.08em;
+    line-height:2.2;letter-spacing:.06em;
     font-feature-settings:"palt";
     -webkit-font-smoothing:antialiased;
   }
   img{max-width:100%}
-  a{color:inherit;text-decoration:none}
+  a{color:var(--ink);text-decoration:none}
   
   .np{display:inline-block}
-  .ln{display:block}
 
   
-  .ph{position:relative;overflow:hidden;background:#e8e8e8}
+  
+  .ph{position:relative;overflow:hidden;background:#eceae6;
+    border:1px dashed var(--slot-edge)}
   .ph::after{ 
-    content:attr(data-slot);position:absolute;right:9px;bottom:7px;z-index:1;
-    font-family:var(--en);font-size:10px;letter-spacing:.16em;
-    color:rgba(13,13,13,.6);background:rgba(255,255,255,.82);
-    padding:3px 9px;border:1px dashed var(--slot-line);
-    line-height:1.6;white-space:nowrap}
+    content:attr(data-slot);position:absolute;right:6px;bottom:6px;
+    max-width:calc(100% - 12px);
+    font-family:var(--en);font-size:10px;letter-spacing:.12em;
+    color:rgba(31,31,31,.66);background:rgba(255,255,255,.86);
+    padding:3px 9px;border:1px solid var(--slot-edge);border-radius:2px;
+    line-height:1.7;text-align:right}
 
   
-  .opening{position:fixed;inset:0;z-index:100;background:#0a0a0a;
+  .opening{position:fixed;inset:0;z-index:100;background:var(--paper);
     display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:18px;pointer-events:none;
-    animation:opening-up 1s var(--ease-out) 1.15s both}
-  @keyframes opening-up{
-    from{transform:translateY(0)}
-    to{transform:translateY(-101%)}}
-  .opening__name{font-family:var(--en);color:#fff;font-size:15px;
-    letter-spacing:.62em;text-indent:.62em;
-    animation:op-fade .7s ease .15s both}
-  .opening__rule{width:0;height:1px;background:#fff;
-    animation:op-rule 1s var(--ease-out) .35s both}
-  @keyframes op-fade{from{opacity:0}to{opacity:1}}
-  @keyframes op-rule{from{width:0}to{width:172px}}
+    gap:20px;pointer-events:none;
+    animation:opening-out 1.2s ease 1.6s both}
+  @keyframes opening-out{
+    from{opacity:1;visibility:visible}
+    to{opacity:0;visibility:hidden}}
+  .opening__mark{width:78px;height:78px;border:1px solid var(--ink);
+    border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:var(--en);font-style:italic;font-size:32px;line-height:1;
+    animation:mark-out 1.6s cubic-bezier(.65,0,.25,1) .3s both}
+  @keyframes mark-out{
+    0%{transform:none;opacity:1}
+    55%{opacity:1}
+    100%{transform:rotate(-450deg) scale(.5);opacity:0}}
+  .opening__name{font-family:var(--en);font-size:13px;letter-spacing:.5em;
+    text-indent:.5em;animation:name-out .8s ease .8s both}
+  @keyframes name-out{from{opacity:1}to{opacity:0}}
 
   
-  header{position:fixed;inset:0 0 auto 0;z-index:50;
+  header{
+    position:fixed;inset:0 0 auto 0;z-index:50;
     display:flex;align-items:center;justify-content:space-between;
-    padding:14px 5vw;background:rgba(255,255,255,.96);
-    border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
-  .brand{font-family:var(--en);font-size:17px;letter-spacing:.34em;
-    text-indent:.34em}
-  nav{display:flex;gap:clamp(16px,2.4vw,34px);align-items:center}
-  nav a{font-family:var(--en);font-size:12px;letter-spacing:.2em;color:var(--ink-soft)}
-  nav a:hover{color:var(--ink);transition:color .3s}
+    padding:16px 4vw;background:rgba(255,255,255,.92);
+    border-bottom:1px solid var(--line);backdrop-filter:blur(6px);
+  }
+  .brand{font-family:var(--en);font-size:16px;letter-spacing:.28em}
+  nav{display:flex;gap:32px;align-items:center}
+  nav a{font-family:var(--en);font-size:12px;letter-spacing:.2em;opacity:.85}
+  nav a:hover{opacity:.45;transition:opacity .4s}
   
-  .reserve-link{display:inline-flex;align-items:center;gap:14px;
-    background:var(--ink);color:#fff;padding:11px 22px;
-    font-family:var(--en);font-size:12px;letter-spacing:.24em;
-    animation:cta-in .7s var(--ease-out) 1.6s both;
-    transition:letter-spacing .4s ease}
-  nav a.reserve-link{color:#fff}
-  .reserve-link:hover{letter-spacing:.34em}
-  @keyframes cta-in{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
-  
-  .plus{position:relative;flex:0 0 auto;width:11px;height:11px;
-    transition:transform .5s var(--ease-out)}
-  .plus::before,.plus::after{content:"";position:absolute;background:currentColor}
-  .plus::before{left:0;right:0;top:50%;height:1px}
-  .plus::after{top:0;bottom:0;left:50%;width:1px}
-  .reserve-link:hover .plus,.btn:hover .plus{transform:rotate(90deg)}
-
-  main{overflow:clip}   
+  .reserve-link{position:relative;overflow:hidden;border:1px solid var(--ink);
+    padding:9px 26px;border-radius:2px;font-size:12px;letter-spacing:.22em;
+    animation:cta-in .8s var(--ease-craft) 1.8s both}
+  @keyframes cta-in{from{opacity:0;transform:translateX(-18px)}
+    to{opacity:1;transform:none}}
+  .reserve-link::before{content:"";position:absolute;inset:-1px -30%;
+    background:var(--ink);transform:skewX(-24deg) translateX(-135%);
+    transition:transform .5s var(--ease-craft)}
+  .reserve-link:hover::before{transform:skewX(-24deg) translateX(0)}
+  .reserve-link span{position:relative;z-index:1;transition:color .35s}
+  .reserve-link:hover span{color:#fff}
 
   
+  .hero{position:relative;min-height:var(--vh-cap);
+    display:flex;align-items:center;justify-content:space-between;
+    gap:6vw;padding:120px 7vw 80px}
   
-  .cover{min-height:100vh;display:flex;flex-direction:column;
-    justify-content:center;gap:clamp(24px,4vh,44px);
-    padding:96px 5vw 48px;max-width:1180px;margin:0 auto}
-  .cover__strip{display:flex;gap:4px;height:min(58vh,560px)}
-  .cover__strip .ph{height:100%}
-  .cover__strip .ph:nth-child(1){flex:1.35}
-  .cover__strip .ph:nth-child(2){flex:1;height:82%;align-self:flex-start}
-  .cover__strip .ph:nth-child(3){flex:1.1}
-  .cover__meta{display:flex;align-items:flex-end;justify-content:space-between;
-    gap:clamp(20px,4vw,60px);flex-wrap:wrap}
-  .issue{display:flex;align-items:baseline;gap:.5em;font-family:var(--en)}
-  .issue__label{font-size:12px;letter-spacing:.34em;color:var(--ink-soft)}
+  .hero__photo{flex:0 0 auto;
+    width:min(40%,460px,calc((var(--vh-cap) - 220px)*.75));aspect-ratio:3/4}
   
-  .issue__no{font-size:clamp(30px,4.4vw,52px);line-height:1;letter-spacing:.26em}
-  .issue__sub{font-size:12px;letter-spacing:.28em;color:var(--ink-soft)}
-  .cover__who{font-size:13px;letter-spacing:.16em;text-align:right}
-  .cover__who .np+.np{margin-left:.6em}
-
-  
-  .statement{max-width:1180px;margin:0 auto;padding:clamp(80px,12vh,150px) 5vw 0}
-  .statement__en{font-family:var(--en);font-weight:700;
-    font-size:clamp(24px,5.4vw,62px);line-height:1.34;letter-spacing:.26em}
-  
-  .u{position:relative;display:inline-block}
-  .u::after{content:"";position:absolute;left:0;right:.26em;bottom:-.14em;
-    height:.05em;background:var(--ink);transform:scaleX(0);transform-origin:left;
-    animation:draw 1.5s var(--ease-out) 2.1s both}
-  .ln+.ln .u::after{animation-delay:2.45s}
-  @keyframes draw{to{transform:scaleX(1)}}
-  .statement .lead{margin-top:clamp(26px,4vh,44px)}
-
-  
-  .sec{position:relative;--sec-bg:var(--paper);--ghost:#ececec;
-    padding:clamp(96px,13vh,160px) 0}
-  .sec--alt{--sec-bg:var(--paper-2);--ghost:#e3e3e3;background:var(--paper-2)}
-  .sec__inner{max-width:1180px;margin:0 auto;padding:0 5vw;
-    display:grid;grid-template-columns:1fr clamp(52px,6vw,88px);
-    column-gap:clamp(14px,2.4vw,40px)}
-  .sec__head{grid-column:1;grid-row:1;position:relative}
-  .sec__body{grid-column:1;grid-row:2;margin-top:clamp(34px,5vh,58px)}
-  
-  .num{position:absolute;z-index:0;top:-.36em;left:-.06em;
-    font-family:var(--en);font-weight:700;
-    font-size:clamp(140px,22vw,300px);line-height:.74;letter-spacing:.02em;
-    color:var(--ghost);pointer-events:none;user-select:none;
-    opacity:0;transform:translateY(24px);
-    transition:opacity 1.1s ease,transform 1.2s var(--ease-out)}
-  .num.show{opacity:1;transform:none}
-  .sec__no,.sec__en,.sec__jp{position:relative;z-index:1}
-  .sec__no{font-family:var(--en);font-size:11px;letter-spacing:.34em;
+  .hero__copy{writing-mode:vertical-rl;
+    font-size:clamp(28px,min(4vw,6.4vh),48px);font-weight:500;line-height:2.2;
+    letter-spacing:.3em;flex:0 0 auto}
+  .hero__copy .ln{display:block;white-space:nowrap}
+  .hero__copy b{font-weight:inherit;display:inline-block;opacity:0;
+    animation:char-in .7s ease both;
+    animation-delay:calc(1.9s + var(--i)*.085s)}
+  @keyframes char-in{from{opacity:0;transform:translateY(16px)}
+    to{opacity:1;transform:none}}
+  .hero__sub{position:absolute;left:7vw;bottom:44px;
+    font-family:var(--en);font-size:11px;letter-spacing:.32em;
+    color:var(--ink-soft);animation:sub-in 1s ease 2.9s both}
+  .hero__sub .jp{display:inline-block;font-family:var(--jp);
+    letter-spacing:.2em;margin-left:1.6em}
+  @keyframes sub-in{from{opacity:0}to{opacity:1}}
+  .hero__scroll{position:absolute;right:7vw;bottom:36px;
+    font-family:var(--en);font-size:10px;letter-spacing:.34em;
     color:var(--ink-soft)}
-  .sec__en{font-family:var(--en);font-weight:700;
-    font-size:clamp(32px,6vw,78px);line-height:1.05;letter-spacing:.24em;
-    margin-top:6px}
-  .sec__jp{font-size:12.5px;letter-spacing:.28em;color:var(--ink-soft);margin-top:10px}
+  .hero__scroll::after{content:"";display:block;width:1px;height:44px;
+    background:var(--line-2);margin:10px auto 0}
 
   
-  .rail{grid-column:2;grid-row:1/span 2;justify-self:center;align-self:start;
-    position:relative;overflow:hidden;display:flex;flex-direction:column;
-    align-items:center;padding-top:4px}
-  .rail::after{content:"";position:absolute;inset:0;background:var(--sec-bg);
-    transform:translateY(0);transition:transform 1.2s var(--ease-wipe)}
-  .rail.show::after{transform:translateY(101%)}
-  .rail__en{writing-mode:vertical-rl;white-space:nowrap;
-    font-family:var(--en);font-size:12px;letter-spacing:.34em;
-    color:var(--ink-soft)}
-  .rail__line{width:1px;height:min(340px,26vh);background:var(--line-2);
-    margin-top:20px}
+  .mshadow{position:relative}
+  .ph.mshadow{overflow:visible} 
+  .mshadow::before{content:"";position:absolute;inset:0;z-index:-1;
+    transform:translate(12px,12px);
+    background:repeating-linear-gradient(45deg,
+      var(--line-2) 0 1px,transparent 1px 5px);
+    animation:stripe-flow 1s linear infinite}
+  
+  @keyframes stripe-flow{to{background-position:7.071px 7.071px}}
 
   
-  .lead{font-size:14px;line-height:2.3;max-width:36em}
-  .lead--wide{max-width:38em}
+  main{overflow:clip}
+  
+  
+  .block{position:relative;max-width:1280px;margin:0 auto;padding:0 4vw;
+    display:grid;grid-template-columns:clamp(76px,6.4vw,96px) 1fr;
+    align-items:start}
+  .gap-l{margin-top:clamp(130px,18vh,230px)}
+  
+  .v-title{grid-column:1;justify-self:start;writing-mode:vertical-rl;
+    white-space:nowrap;transform:translateY(-72px);margin-bottom:-72px;
+    font-family:var(--en);font-size:clamp(36px,4.6vw,54px);
+    line-height:1;letter-spacing:.22em}
+  .v-title .jp{writing-mode:vertical-rl;font-family:var(--jp);
+    font-size:11px;letter-spacing:.3em;color:var(--ink-soft);
+    margin-top:22px}
+  .block__body{grid-column:2}
+  h2{font-size:20px;font-weight:500;line-height:2.2;letter-spacing:.18em}
+  .lead{margin-top:16px;max-width:36em}
 
   
-  .gallery{display:grid;grid-template-columns:repeat(12,1fr);
-    column-gap:clamp(12px,2vw,28px);row-gap:clamp(22px,4vw,54px);
-    align-items:start;margin-top:clamp(30px,5vh,56px)}
-  .gallery figure{position:relative}
-  .g1{grid-column:1/7}
-  .g2{grid-column:8/13;margin-top:clamp(30px,7vw,104px)}
+  .look{display:flex;gap:4.5%}
   
-  .g3{grid-column:2/13;width:calc(100% + clamp(18px,4vw,56px))}
-  .g4{grid-column:1/6}
-  .g5{grid-column:7/13;margin-top:clamp(20px,4vw,64px)}
-  .g1 .ph,.g5 .ph{aspect-ratio:3/4}
-  .g2 .ph,.g4 .ph{aspect-ratio:1/1}
-  .g3 .ph{aspect-ratio:3/2}
-  .cap{display:flex;justify-content:space-between;gap:1em;margin-top:11px;
-    font-family:var(--en);font-size:11px;letter-spacing:.24em;color:var(--ink-soft)}
-  .cap .jp{font-family:var(--jp);letter-spacing:.16em}
+  .look__item{flex:1;display:flex;gap:14px;align-items:flex-start;
+    perspective:900px}
+  .look__tag{writing-mode:vertical-rl;flex:0 0 auto;
+    font-family:var(--en);font-style:italic;font-size:12px;
+    letter-spacing:.3em;color:var(--ink-soft);padding-top:2px}
+  .js .look__tag{opacity:0;transform:rotateY(88deg);transform-origin:left center;
+    transition:opacity .9s ease,transform 1s var(--ease-craft)}
+  .js .look__tag.show{opacity:1;transform:none}
+  
+  .look__photo{flex:1;aspect-ratio:3/4}
+  
+  .js .tilt{transform:rotateY(20deg) translateZ(-96px)}
+  .js .tilt.show{transform:none;transition:transform 1.4s var(--ease-craft)}
+  .js .look__item:nth-child(2) .tilt.show,
+  .js .look__item:nth-child(2) .look__tag.show{transition-delay:.12s}
+  .js .look__item:nth-child(3) .tilt.show,
+  .js .look__item:nth-child(3) .look__tag.show{transition-delay:.24s}
+  .js .look__item:nth-child(4) .tilt.show,
+  .js .look__item:nth-child(4) .look__tag.show{transition-delay:.36s}
 
   
-  .wipe::before{content:"";position:absolute;inset:-2% -34%;z-index:2;
-    background:var(--ink);transform:skewX(-19deg) translateX(0);
-    transition:transform 1.05s var(--ease-wipe)}
-  .wipe.show::before{transform:skewX(-19deg) translateX(152%)}
-  .wipe-d1.show::before{transition-delay:.09s}
-  .wipe-d2.show::before{transition-delay:.18s}
-  .wipe-d3.show::before{transition-delay:.27s}
+  .menu-cards{display:flex;flex-wrap:wrap;gap:56px 6%;list-style:none}
+  .card{flex:0 0 29.3%;border-top:1px solid var(--ink);
+    padding:22px 0 30px}
+  .card:nth-child(3n+2){margin-top:64px}
+  .card:nth-child(3n+3){margin-top:128px}
+  .card .tag{font-family:var(--en);font-style:italic;font-size:12px;
+    letter-spacing:.22em;color:var(--ink-soft)}
+  .card h3{font-size:15px;font-weight:600;letter-spacing:.16em;margin-top:10px}
+  .card p{font-size:13px;line-height:2.1;margin-top:8px;color:var(--ink-soft)}
+  .card .pr{display:block;margin-top:12px;font-family:var(--en);
+    font-size:15px;letter-spacing:.1em}
+  .menu-note{margin-top:26px;font-size:12px;color:var(--ink-soft)}
 
   
-  .menu{list-style:none;margin-top:clamp(24px,4vh,44px)}
-  .card{display:grid;grid-template-columns:1fr auto;
-    column-gap:clamp(16px,3vw,44px);
-    border-top:1px solid var(--line-2);padding:22px 0 24px}
-  .card:last-of-type{border-bottom:1px solid var(--line-2)}
-  .card__head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
-  .card__en{font-family:var(--en);font-size:11px;letter-spacing:.26em;
-    color:var(--ink-soft)}
-  .card h3{font-size:15px;font-weight:600;letter-spacing:.14em}
-  .card p{grid-column:1;font-size:12.5px;line-height:2.05;margin-top:7px;
-    color:var(--ink-soft);max-width:34em}
-  .card__pr{grid-column:2;grid-row:1/3;text-align:right;line-height:1.35;
-    font-family:var(--en);font-size:20px;letter-spacing:.1em;white-space:nowrap}
-  .card__time{display:block;margin-top:2px;font-family:var(--jp);
-    font-size:11px;letter-spacing:.14em;color:var(--ink-soft)}
-  .menu-note{margin-top:22px;font-size:12px;color:var(--ink-soft);max-width:40em}
+  .concept{position:relative}
+  .concept__ghost{position:absolute;top:-58px;right:-16vw;z-index:-1;
+    font-family:var(--en);font-style:italic;
+    font-size:clamp(96px,15vw,180px);line-height:1;
+    letter-spacing:.04em;color:var(--ghost);white-space:nowrap;
+    pointer-events:none}
+  .concept__grid{display:flex;gap:8%;align-items:flex-start}
+  .concept__text{flex:0 1 48%}
+  .concept__photo{flex:0 1 44%;aspect-ratio:3/2;margin-top:56px}
 
   
-  .concept{display:grid;grid-template-columns:1fr 1fr;
-    gap:clamp(28px,5vw,72px);align-items:start;margin-top:clamp(24px,4vh,44px)}
-  .concept__h{font-size:clamp(17px,2vw,22px);font-weight:600;line-height:2;
-    letter-spacing:.2em;margin-bottom:20px}
-  .concept__ph{width:calc(100% + clamp(18px,4vw,56px));aspect-ratio:3/2;
-    margin-top:clamp(0px,3vw,38px)}
+  .info{display:flex;gap:8%;align-items:flex-start}
+  .info dl{flex:0 1 46%}
+  .info dl div{display:flex;border-bottom:1px solid var(--line);padding:13px 2px}
+  .info dt{flex:0 0 7.5em;color:var(--ink-soft);font-size:13px}
+  .info dd{flex:1}
+  .info__map{flex:0 1 46%;aspect-ratio:4/3}
 
   
-  .people{display:grid;grid-template-columns:1fr 1fr;
-    gap:clamp(26px,5vw,70px);margin-top:clamp(24px,4vh,44px);max-width:820px}
-  .person .ph{aspect-ratio:3/4}
-  .person__name{margin-top:16px;font-size:15px;font-weight:600;letter-spacing:.16em}
-  .person__en{font-family:var(--en);font-size:11px;letter-spacing:.28em;
-    color:var(--ink-soft);margin-top:5px}
-  .person__note{font-size:12.5px;line-height:2.05;color:var(--ink-soft);margin-top:10px}
+  
+  .reserve{max-width:1280px;margin-left:auto;margin-right:auto;
+    padding:0 4vw;text-align:center}
+  .reserve .eyebrow-en{font-family:var(--en);font-style:italic;font-size:13px;
+    letter-spacing:.3em;color:var(--ink-soft)}
+  .wipe-btn{display:inline-block;position:relative;overflow:hidden;
+    margin-top:26px;border:1px solid var(--ink);padding:24px 84px}
+  .wipe-btn::before{content:"";position:absolute;inset:-1px -30%;
+    background:var(--ink);transform:skewX(-24deg) translateX(-135%);
+    transition:transform .55s var(--ease-craft)}
+  .wipe-btn:hover::before{transform:skewX(-24deg) translateX(0)}
+  .wipe-btn span{position:relative;z-index:1;display:block;
+    font-family:var(--en);font-size:17px;letter-spacing:.34em;
+    text-indent:.34em;transition:color .35s}
+  .wipe-btn:hover span{color:#fff}
+  .reserve .tel{margin-top:18px;font-size:13px;letter-spacing:.16em}
 
   
-  .info{display:grid;grid-template-columns:1fr 1fr;
-    gap:clamp(28px,5vw,66px);align-items:start;margin-top:clamp(24px,4vh,44px)}
-  .info dl div{display:flex;border-bottom:1px solid var(--line);padding:12px 2px}
-  .info dt{flex:0 0 6.6em;color:var(--ink-soft);font-size:12.5px}
-  .info dd{flex:1;font-size:13px}
-  .info .ph{aspect-ratio:4/3}
-
-  
-  .reserve{background:var(--ink);color:#fff;
-    padding:clamp(84px,12vh,140px) 5vw;text-align:center;margin-top:0}
-  .reserve__en{font-family:var(--en);font-weight:700;
-    font-size:clamp(30px,5vw,64px);line-height:1.1;letter-spacing:.26em;
-    text-indent:.26em}
-  .reserve__jp{margin-top:18px;font-size:13px;letter-spacing:.16em;
-    color:rgba(255,255,255,.82)}
-  .btn{display:inline-flex;align-items:center;gap:26px;margin-top:34px;
-    border:1px solid #fff;color:#fff;padding:22px clamp(34px,7vw,74px);
-    font-family:var(--en);font-size:16px;letter-spacing:.26em;
-    transition:letter-spacing .4s ease,background-color .4s ease,color .4s ease}
-  .btn:hover{background:#fff;color:var(--ink);letter-spacing:.36em}
-  .reserve__sub{margin-top:26px;font-size:12.5px;letter-spacing:.14em;
-    color:rgba(255,255,255,.82);line-height:2.2}
-
-  
-  footer{padding:60px 5vw 104px;text-align:center;background:var(--paper)}
-  footer .brand{display:block;margin-bottom:14px}
+  footer{margin-top:clamp(120px,16vh,200px);padding:64px 4vw 110px;
+    text-align:center;border-top:1px solid var(--line)}
+  footer .brand{display:block;margin-bottom:16px}
   footer p{font-size:12.5px;color:var(--ink-soft);line-height:2.2}
-  footer small{display:block;margin-top:26px;font-family:var(--en);
-    font-size:10px;letter-spacing:.26em;color:var(--ink-soft)}
-
-  
-  .fade-up{opacity:0;transform:translateY(46px);
-    transition:opacity .9s ease,transform 1s var(--ease-out)}
-  .fade-up.show{opacity:1;transform:none}
+  footer small{display:block;margin-top:28px;font-family:var(--en);
+    font-size:10px;letter-spacing:.25em;color:var(--ink-soft)}
 
   
   .sp-bar{display:none}
   @media(max-width:820px){
     nav a:not(.reserve-link){display:none}
+    .hero{flex-direction:column;justify-content:center;gap:44px;
+      padding:104px 7vw 90px;min-height:var(--vh-cap)}
     
-    .cover{padding:88px 5vw 96px;gap:26px}
-    .cover__strip{display:grid;grid-template-columns:1fr 1fr;height:auto;gap:4px}
-    .cover__strip .ph{height:auto;aspect-ratio:1/1}
-    .cover__strip .ph:nth-child(1){grid-column:1/3;aspect-ratio:4/3}
-    .cover__strip .ph:nth-child(2){height:auto;align-self:auto}
-    .cover__meta{flex-direction:column;align-items:flex-start;gap:14px}
-    .cover__who{text-align:left}
-    .sec__inner{display:block}
-    .rail{display:none}          
-    .num{font-size:clamp(110px,30vw,150px);top:-.3em}
-    
-    .gallery{display:flex;flex-direction:column;align-items:stretch;gap:30px}
-    .g2,.g5{margin-top:0}
-    .g3{width:100%}
-    .card{grid-template-columns:1fr auto}
-    .card__pr{font-size:18px}
-    .concept,.people,.info{grid-template-columns:1fr}
-    .concept__ph{width:100%;margin-top:0}
-    .btn{width:100%;justify-content:center;gap:18px;padding:20px 0}
+    .hero__copy{order:1;align-self:flex-end;
+      font-size:clamp(24px,7vw,32px)}
+    .hero__photo{order:2;flex:none;width:74%;max-width:340px;
+      align-self:flex-start}
+    .hero__sub{position:static;order:3;animation-delay:2.9s}
+    .hero__sub .jp{display:block;margin:4px 0 0}
+    .hero__scroll{display:none}
+    .block{display:block}
+    .v-title{writing-mode:horizontal-tb;white-space:normal;
+      transform:none;margin-bottom:6px;font-size:34px}
+    .v-title .jp{writing-mode:horizontal-tb;display:inline-block;
+      margin:0 0 0 14px;vertical-align:.4em}
+    .block__body{margin-top:18px}
+    .look{flex-direction:column;gap:36px}
+    .look__item{perspective:none}
+    .look__photo{max-width:82%}
+    .menu-cards{flex-direction:column;gap:0}
+    .card{flex:none;width:100%}
+    .card:nth-child(3n+2),.card:nth-child(3n+3){margin-top:26px}
+    .concept__grid{flex-direction:column;gap:40px}
+    .concept__photo{margin-top:0;width:100%;flex:none}
+    .concept__ghost{font-size:96px;top:-30px;right:-30vw}
+    .info{flex-direction:column;gap:44px}
+    .info dl,.info__map{width:100%;flex:none}
+    .wipe-btn{padding:20px 13vw}
     .sp-bar{display:flex;position:fixed;inset:auto 0 0 0;z-index:60}
     .sp-bar a{flex:1;text-align:center;padding:15px 0;font-size:13px;
       letter-spacing:.2em;color:#fff;background:var(--ink)}
-    .sp-bar a+a{border-left:1px solid rgba(255,255,255,.28)}
+    .sp-bar a+a{border-left:1px solid rgba(255,255,255,.25)}
     body{padding-bottom:52px}
   }
 
   
+  
+  .js .fade-up{opacity:0;transform:translate(0,50px);
+    transition:opacity 1s ease-in-out,transform 1s ease-in-out}
+  .js .fade-up.show{opacity:1;transform:translate(0,0)}
+
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
     .opening{display:none}
-    .fade-up,.num{opacity:1;transform:none}
-    .u::after{transform:none}
-    .opening__rule{width:172px}
-    .wipe::before{display:none}   
-    .rail::after{display:none}    
+    .hero__copy b{opacity:1;transform:none}
+    
+    .js .fade-up,.js .tilt,.js .look__tag{opacity:1;transform:none}
     html{scroll-behavior:auto}
   }
 
+  
+  
   @media(max-width:820px){}
-  .spec{max-width:1180px;margin:80px auto 60px;padding:32px 5vw;
+  .spec{max-width:1080px;margin:90px auto 60px;padding:34px 4vw;
     border:1px dashed var(--slot-line);background:var(--slot-bg);
     font-size:12.5px;line-height:2.1;color:var(--ink);overflow-x:auto}
   .spec h3{font-size:13px;letter-spacing:.2em;margin-bottom:10px}
@@ -320,6 +306,8 @@
 .ph>img,.ph .slide>img{width:100%;height:100%;object-fit:cover;display:block}
 .ph .slide{background-size:cover;background-position:center}
 </style>
+
+<script>document.documentElement.classList.add('js')</script>
 <meta name="description" content="ネイルサロンのTokyo Nail Salon Top Coat - English Speaking。4th floor, ２丁目-２７-2 北沢 世田谷区 東京都 155-0031 日本にて営業中。お気軽にお問い合わせください。">
 <meta property="og:title" content="Tokyo Nail Salon Top Coat - English Speaking">
 <meta property="og:description" content="ネイルサロンのTokyo Nail Salon Top Coat - English Speaking。4th floor, ２丁目-２７-2 北沢 世田谷区 東京都 155-0031 日本">
@@ -385,12 +373,17 @@ div:has(> dd:empty){display:none !important}
 </style>
 </head>
 <body>
-<nav class="vbar" aria-label="デザイン案の切り替え"><div class="wrap vbar__inner"><span class="vbar__note">エレノアがTokyo Nail Salon Top Coat - English Speaking様へのご提案として作成した見本です。Tokyo Nail Salon Top Coat - English Speaking様ご自身が公開されているものではありません。</span><ul class="vbar__list"><li><a class="vbar__link" href="../">1　静謐な空気</a></li><li><a class="vbar__link" href="../2/">2　静かな信頼</a></li><li><a class="vbar__link" href="./" aria-current="page">3　作品で選ぶ（リッチプラン専用デザイン）</a></li></ul></div></nav>
+<nav class="vbar" aria-label="デザイン案の切り替え"><div class="wrap vbar__inner"><span class="vbar__note">エレノアがTokyo Nail Salon Top Coat - English Speaking様へのご提案として作成した見本です。Tokyo Nail Salon Top Coat - English Speaking様ご自身が公開されているものではありません。</span><ul class="vbar__list"><li><a class="vbar__link" href="../">1　誠実な開示</a></li><li><a class="vbar__link" href="../2/">2　静かな信頼</a></li><li><a class="vbar__link" href="./" aria-current="page">3　動きで魅せる（リッチプラン専用デザイン）</a></li></ul></div></nav>
+
 
 
 <div class="opening" aria-hidden="true">
-  <span class="opening__name">HAKUSHI</span>
-  <span class="opening__rule"></span>
+  <div class="opening__mark">
+    T
+  </div>
+  <div class="opening__name">
+    Tokyo Nail Salon Top Coat - English Speaking
+  </div>
 </div>
 
 <header>
@@ -398,287 +391,156 @@ div:has(> dd:empty){display:none !important}
     Tokyo Nail Salon Top Coat - English Speaking
   </span>
   <nav>
-    <a href="#collection">COLLECTION</a>
+    <a href="#look">LOOKBOOK</a>
     <a href="#menu">MENU</a>
     <a href="#concept">CONCEPT</a>
     <a href="#access">ACCESS</a>
-    <a class="reserve-link" href="#reserve">RESERVATION<span class="plus"></span></a>
+    <a class="reserve-link" href="#reserve"><span>RESERVATION</span></a>
   </nav>
 </header>
 
 <main>
 
   
-  <div class="cover">
-    <div class="cover__strip">
-      <div class="ph"><img src="https://images.unsplash.com/photo-1633394443519-985dc90457db?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8M3x8bmFpbCUyMHNhbG9uJTIwc3R5bGV8ZW58MXwxfHx8MTc4NzA2MjY5N3ww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="表紙" loading="eager" fetchpriority="high" decoding="async"></div>
-      <div class="ph"><img src="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8NHx8bmFpbCUyMHNhbG9uJTIwc3R5bGV8ZW58MXwxfHx8MTc4NzA2MjY5N3ww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="表紙" loading="lazy" decoding="async"></div>
-      <div class="ph"><img src="https://images.unsplash.com/photo-1667769462514-1fd738b38498?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8NXx8bmFpbCUyMHNhbG9uJTIwc3R5bGV8ZW58MXwxfHx8MTc4NzA2MjY5N3ww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="表紙" loading="lazy" decoding="async"></div>
-    </div>
-    <div class="cover__meta">
-      <p class="issue">
-        <span class="issue__label">COLLECTION</span>
-        <span class="issue__no">Vol.01</span>
-        <span class="issue__sub">2026 SUMMER</span>
-      </p>
-      <p class="cover__who">
-        <span class="np">東京都世田谷区北沢の</span><span class="np">ネイルサロン</span><span class="np">Tokyo Nail Salon Top Coat - English Speaking</span>
-      </p>
-    </div>
-  </div>
-
-  
-  <div class="statement">
-    <h1 class="statement__en">
-      <span class="ln"><span class="np">NAIL SALON</span><span class="np">KITAZAWA</span></span><span class="ln"><span class="np">ENGLISH</span><span class="np">SPEAKING</span></span>
+  <div class="hero">
+    <div class="hero__photo ph mshadow"><img src="https://images.unsplash.com/photo-1667769462514-1fd738b38498?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8NXx8bmFpbCUyMHNhbG9uJTIwc3R5bGV8ZW58MXwxfHx8MTc4NzIzNjg5N3ww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="スタイル写真" loading="eager" fetchpriority="high" decoding="async"></div>
+    <h1 class="hero__copy">
+      <span class="ln"><span class="np">爪先に</span><span class="np">静けさを</span></span><span class="ln"><span class="np">世田谷</span><span class="np">北沢の指先</span></span>
     </h1>
-    <p class="lead fade-up">
-      <span class="np">東京都世田谷区北沢の</span><span class="np">ネイルサロンです。</span><span class="np">月曜から日曜まで、</span><span class="np">10時から21時まで営業。</span><span class="np">英語でのご相談にも</span><span class="np">対応します。</span>
+    <p class="hero__sub">
+      Tokyo Nail Salon Top Coat - English Speaking｜ネイルサロン・世田谷区北沢
     </p>
+    <div class="hero__scroll">SCROLL</div>
   </div>
 
   
-  <section id="collection" class="sec">
-    <div class="sec__inner">
-      <div class="sec__head">
-        <span class="num" aria-hidden="true">01</span>
-        <p class="sec__no">No.01</p>
-        <h2 class="sec__en">COLLECTION</h2>
-        <p class="sec__jp">デザイン作例</p>
-      </div>
-      <div class="rail fade-up" aria-hidden="true">
-        <span class="rail__en">COLLECTION</span><span class="rail__line"></span>
-      </div>
-      <div class="sec__body">
-        <p class="lead fade-up">
-          <span class="np">その日の装いや過ごし方を</span><span class="np">うかがいながら、</span><span class="np">色と形を</span><span class="np">決めていきます。</span><span class="np">写真は仕上がりの一例です。</span>
-        </p>
-        <div class="gallery">
-          <figure class="g1">
-            <div class="ph wipe"><img src="https://images.unsplash.com/photo-1772322586702-73125782bd99?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Nnx8bmFpbCUyMHNhbG9uJTIwc3R5bGV8ZW58MXwxfHx8MTc4NzA2MjY5N3ww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="作品" loading="lazy" decoding="async"></div>
-            <figcaption class="cap">
-              <span>ONE COLOR</span>
-              <span class="jp">ワンカラー</span>
-            </figcaption>
-          </figure>
-          <figure class="g2">
-            <div class="ph wipe wipe-d1"><img src="https://images.unsplash.com/photo-1688583417757-9060cba25399?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8MXx8bmFpbCUyMHNhbG9uJTIwc3R5bGV8ZW58MXwyfHx8MTc4NzA2MjY5N3ww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="作品" loading="lazy" decoding="async"></div>
-            <figcaption class="cap">
-              <span>GRADATION</span>
-              <span class="jp">グラデーション</span>
-            </figcaption>
-          </figure>
-          <figure class="g3">
-            <div class="ph wipe"><img src="https://images.unsplash.com/photo-1667242197482-ffe672de74da?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Nnx8bmFpbCUyMHNhbG9uJTIwc3R5bGV8ZW58MXwwfHx8MTc4NzA2MjY5NXww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="作品" loading="lazy" decoding="async"></div>
-            <figcaption class="cap">
-              <span>FRENCH</span>
-              <span class="jp">フレンチ</span>
-            </figcaption>
-          </figure>
-          <figure class="g4">
-            <div class="ph wipe"><img src="https://images.unsplash.com/photo-1688583417770-ff6cc18071dc?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Mnx8bmFpbCUyMHNhbG9uJTIwc3R5bGV8ZW58MXwyfHx8MTc4NzA2MjY5N3ww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="作品" loading="lazy" decoding="async"></div>
-            <figcaption class="cap">
-              <span>NAIL ART</span>
-              <span class="jp">ネイルアート</span>
-            </figcaption>
-          </figure>
-          <figure class="g5">
-            <div class="ph wipe wipe-d1"><img src="https://images.unsplash.com/photo-1772322586785-3a34772cbc61?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8N3x8bmFpbCUyMHNhbG9uJTIwc3R5bGV8ZW58MXwxfHx8MTc4NzA2MjY5N3ww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="作品" loading="lazy" decoding="async"></div>
-            <figcaption class="cap">
-              <span>FOOT</span>
-              <span class="jp">フットネイル</span>
-            </figcaption>
-          </figure>
+  <section id="look" class="block gap-l">
+    <h2 class="v-title">LOOKBOOK<span class="jp">スタイル</span></h2>
+    <div class="block__body">
+      <p class="lead fade-up">
+        <span class="np">世田谷区北沢の</span><span class="np">ネイルサロンです。</span><span class="np">ジェルネイルや</span><span class="np">ネイルケアを、</span><span class="np">ご希望をうかがいながら</span><span class="np">仕上げます。</span>
+      </p>
+      <div class="look" style="margin-top:44px">
+        <div class="look__item">
+          <span class="look__tag">世田谷区北沢</span>
+          <div class="look__photo ph tilt"><img src="https://images.unsplash.com/photo-1619607146034-5a05296c8f9a?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8MXx8bmFpbCUyMHNhbG9uJTIwaW50ZXJpb3J8ZW58MXwxfHx8MTc4NzIzNjg5MHww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="L1" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="look__item">
+          <span class="look__tag">ジェルネイル</span>
+          <div class="look__photo ph tilt"><img src="https://images.unsplash.com/photo-1534004471323-19f1a470c4c1?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Mnx8bmFpbCUyMHNhbG9uJTIwaW50ZXJpb3J8ZW58MXwxfHx8MTc4NzIzNjg5MHww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="L2" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="look__item">
+          <span class="look__tag">英語対応</span>
+          <div class="look__photo ph tilt"><img src="https://images.unsplash.com/photo-1612887390768-fb02affea7a6?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Nnx8bmFpbCUyMHNhbG9ufGVufDF8MXx8fDE3ODcyMzY5MDN8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="L3" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="look__item">
+          <span class="look__tag">夜21時まで</span>
+          <div class="look__photo ph tilt"><img src="https://images.unsplash.com/photo-1571290274554-6a2eaa771e5f?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8N3x8bmFpbCUyMHNhbG9ufGVufDF8MXx8fDE3ODcyMzY5MDN8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="L4" loading="lazy" decoding="async"></div>
         </div>
       </div>
     </div>
   </section>
 
   
-  <section id="menu" class="sec sec--alt">
-    <div class="sec__inner">
-      <div class="sec__head">
-        <span class="num" aria-hidden="true">02</span>
-        <p class="sec__no">No.02</p>
-        <h2 class="sec__en">MENU</h2>
-        <p class="sec__jp">メニューと所要時間の目安</p>
-      </div>
-      <div class="rail fade-up" aria-hidden="true">
-        <span class="rail__en">MENU</span><span class="rail__line"></span>
-      </div>
-      <div class="sec__body">
-        <ul class="menu fade-up">
-          <li class="card">
-            <div class="card__head">
-              <span class="card__en">ONE COLOR</span>
-              <h3>ジェルネイル ワンカラー</h3>
-            </div>
-            <p><span class="np">爪の形を整えてから、</span><span class="np">お選びいただいた</span><span class="np">一色で</span><span class="np">仕上げます。</span></p>
-            <span class="card__pr">—
-              <span class="card__time">約60分</span>
-            </span>
-          </li>
-          <li class="card">
-            <div class="card__head">
-              <span class="card__en">GRADATION</span>
-              <h3>グラデーション</h3>
-            </div>
-            <p><span class="np">根元から先へ向けて、</span><span class="np">色の濃さを</span><span class="np">少しずつ変えて</span><span class="np">仕上げます。</span></p>
-            <span class="card__pr">—
-              <span class="card__time">約75分</span>
-            </span>
-          </li>
-          <li class="card">
-            <div class="card__head">
-              <span class="card__en">FRENCH</span>
-              <h3>フレンチ</h3>
-            </div>
-            <p><span class="np">爪先だけに色を入れる、</span><span class="np">服装を選びにくい</span><span class="np">定番のデザインです。</span></p>
-            <span class="card__pr">—
-              <span class="card__time">約75分</span>
-            </span>
-          </li>
-          <li class="card">
-            <div class="card__head">
-              <span class="card__en">NAIL ART</span>
-              <h3>ネイルアート</h3>
-            </div>
-            <p><span class="np">ご希望の絵柄や質感を</span><span class="np">うかがってから、</span><span class="np">本数を決めて描きます。</span></p>
-            <span class="card__pr">—
-              <span class="card__time">約90分</span>
-            </span>
-          </li>
-          <li class="card">
-            <div class="card__head">
-              <span class="card__en">NAIL CARE</span>
-              <h3>ネイルケア</h3>
-            </div>
-            <p><span class="np">甘皮まわりを整え、</span><span class="np">爪の形と表面を</span><span class="np">ととのえる</span><span class="np">手入れのメニューです。</span></p>
-            <span class="card__pr">—
-              <span class="card__time">約45分</span>
-            </span>
-          </li>
-          <li class="card">
-            <div class="card__head">
-              <span class="card__en">FOOT NAIL</span>
-              <h3>フットネイル</h3>
-            </div>
-            <p><span class="np">足の爪を整えてから、</span><span class="np">ハンドと同じように</span><span class="np">色や絵柄を入れます。</span></p>
-            <span class="card__pr">—
-              <span class="card__time">約90分</span>
-            </span>
-          </li>
-        </ul>
-        <p class="menu-note fade-up">
-          <span class="np">料金は、デザインと</span><span class="np">爪の状態によって変わります。</span><span class="np">ご予約の際にお伝えします。</span><span class="np">所要時間は目安で、</span><span class="np">デザインによって前後します。</span>
-        </p>
-      </div>
+  <section id="menu" class="block gap-l">
+    <h2 class="v-title">MENU<span class="jp">メニューと料金</span></h2>
+    <div class="block__body">
+      <ul class="menu-cards fade-up">
+        <li class="card">
+          <span class="tag">GEL</span>
+          <h3>ジェルネイル</h3>
+          <p><span class="np">ワンカラーから</span><span class="np">アートまで、</span><span class="np">色と質感を</span><span class="np">選びながら</span><span class="np">お作りします。</span></p>
+          <span class="pr">—</span>
+        </li>
+        <li class="card">
+          <span class="tag">CARE</span>
+          <h3>ネイルケア</h3>
+          <p><span class="np">甘皮まわりと</span><span class="np">爪の形を一本ずつ</span><span class="np">確かめながら、</span><span class="np">素の指先を整えます。</span></p>
+          <span class="pr">—</span>
+        </li>
+        <li class="card">
+          <span class="tag">ART</span>
+          <h3>ネイルアート</h3>
+          <p><span class="np">作例をご覧いただき、</span><span class="np">イメージを</span><span class="np">うかがいながら</span><span class="np">デザインを決めます。</span></p>
+          <span class="pr">—</span>
+        </li>
+        <li class="card">
+          <span class="tag">FOOT</span>
+          <h3>フットネイル</h3>
+          <p><span class="np">足元も同じ手順で、</span><span class="np">爪の形を整えてから</span><span class="np">色をのせ、</span><span class="np">丁寧に</span><span class="np">仕上げます。</span></p>
+          <span class="pr">—</span>
+        </li>
+        <li class="card">
+          <span class="tag">OFF</span>
+          <h3>ネイルオフ</h3>
+          <p><span class="np">他店で付けたものも</span><span class="np">承ります。</span><span class="np">付け替えの際は</span><span class="np">ご予約時にお伝えください。</span></p>
+          <span class="pr">—</span>
+        </li>
+        <li class="card">
+          <span class="tag">HAND</span>
+          <h3>ハンドケア</h3>
+          <p><span class="np">手指のうるおいを</span><span class="np">保つお手入れを、</span><span class="np">施術のあとに</span><span class="np">あわせて承ります。</span></p>
+          <span class="pr">—</span>
+        </li>
+      </ul>
+      <p class="menu-note fade-up">
+        <span class="np">料金と所要時間の目安は</span><span class="np">メニューと爪の状態で異なります。</span><span class="np">詳しくはお電話または</span><span class="np">メールでお問い合わせください。</span>
+      </p>
     </div>
   </section>
 
   
-  <section id="concept" class="sec">
-    <div class="sec__inner">
-      <div class="sec__head">
-        <span class="num" aria-hidden="true">03</span>
-        <p class="sec__no">No.03</p>
-        <h2 class="sec__en">CONCEPT</h2>
-        <p class="sec__jp">当店の考えかた</p>
-      </div>
-      <div class="rail fade-up" aria-hidden="true">
-        <span class="rail__en">CONCEPT</span><span class="rail__line"></span>
-      </div>
-      <div class="sec__body">
-        <div class="concept">
-          <div class="fade-up">
-            <p class="concept__h">
-              <span class="np">指先に、</span><span class="np">無理のない時間を。</span>
-            </p>
-            <p class="lead lead--wide">
-              <span class="np">ネイルは、</span><span class="np">仕上がりだけでなく、</span><span class="np">座っている時間そのものが</span><span class="np">一日の一部になります。</span><span class="np">ご希望をうかがい、</span><span class="np">爪の状態を見てから、</span><span class="np">無理のない範囲で</span><span class="np">形を決めていきます。</span><span class="np">分からないことは、</span><span class="np">その場でお尋ねください。</span><span class="np">英語でのご相談にも</span><span class="np">対応します。</span>
-            </p>
-          </div>
-          <div class="concept__ph ph wipe fade-up"><img src="https://images.unsplash.com/photo-1753285311550-154917dab783?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Nnx8bmFpbCUyMHNhbG9uJTIwaGFuZHMlMjBjbG9zZXVwfGVufDF8MHx8fDE3ODcwNjI2OTN8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="施術風景" loading="lazy" decoding="async"></div>
+  <section id="concept" class="block gap-l concept">
+    <div class="concept__ghost" aria-hidden="true">
+      COAT
+    </div>
+    <h2 class="v-title">CONCEPT<span class="jp">かんがえ</span></h2>
+    <div class="block__body">
+      <div class="concept__grid">
+        <div class="concept__text fade-up">
+          <h2 style="margin-top:8px">
+            <span class="np">仕上がりを</span><span class="np">急がないこと。</span>
+          </h2>
+          <p class="lead">
+            <span class="np">爪の状態を見てから、</span><span class="np">できることをお話しします。</span><span class="np">店は世田谷区北沢にあります。</span><span class="np">詳しい道順は</span><span class="np">ご予約の際にお伝えしますので、</span><span class="np">はじめての方もお気軽に。</span><span class="np">営業は毎日10時から21時まで、</span><span class="np">お仕事のあとでもお越しいただけます。</span><span class="np">英語でのご案内にも対応します。</span><span class="np">ご予約はお電話かメールで承ります。</span>
+          </p>
         </div>
+        <div class="concept__photo ph mshadow fade-up"><img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8MXx8bmFpbCUyMHNhbG9uJTIwaGFuZHMlMjBjbG9zZXVwfGVufDF8MHx8fDE3ODcyMzY4NzZ8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="施術風景" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
 
   
-  <section id="nailist" class="sec sec--alt">
-    <div class="sec__inner">
-      <div class="sec__head">
-        <span class="num" aria-hidden="true">04</span>
-        <p class="sec__no">No.04</p>
-        <h2 class="sec__en">NAILIST</h2>
-        <p class="sec__jp">スタッフより</p>
-      </div>
-      <div class="rail fade-up" aria-hidden="true">
-        <span class="rail__en">NAILIST</span><span class="rail__line"></span>
-      </div>
-      <div class="sec__body">
-        <div class="people">
-          <div class="person fade-up">
-            <div class="ph wipe"><img src="https://images.unsplash.com/photo-1758225490983-0fae7961e425?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8NHx8bmFpbCUyMHNhbG9uJTIwcG9ydHJhaXR8ZW58MXwxfHx8MTc4NzA2MjY5Nnww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="人" loading="lazy" decoding="async"></div>
-            <p class="person__name">（スタッフ名）</p>
-            <p class="person__en">NAIL TECHNICIAN</p>
-            <p class="person__note"><span class="np">ご希望の色や形を</span><span class="np">うかがいながら、</span><span class="np">その日の爪の状態に</span><span class="np">合わせて</span><span class="np">ご提案します。</span></p>
-          </div>
-          <div class="person fade-up">
-            <div class="ph wipe wipe-d1"><img src="https://images.unsplash.com/photo-1742660225133-b2e92897506e?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8NXx8bmFpbCUyMHNhbG9uJTIwcG9ydHJhaXR8ZW58MXwxfHx8MTc4NzA2MjY5Nnww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="人" loading="lazy" decoding="async"></div>
-            <p class="person__name">（スタッフ名）</p>
-            <p class="person__en">NAIL TECHNICIAN / ENGLISH</p>
-            <p class="person__note"><span class="np">初めての方には、</span><span class="np">手入れのしかたや</span><span class="np">もちについても</span><span class="np">ご説明します。</span><span class="np">英語でも承ります。</span></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  
-  <section id="access" class="sec">
-    <div class="sec__inner">
-      <div class="sec__head">
-        <span class="num" aria-hidden="true">05</span>
-        <p class="sec__no">No.05</p>
-        <h2 class="sec__en">ACCESS</h2>
-        <p class="sec__jp">ご予約とアクセス</p>
-      </div>
-      <div class="rail fade-up" aria-hidden="true">
-        <span class="rail__en">ACCESS</span><span class="rail__line"></span>
-      </div>
-      <div class="sec__body">
-        <div class="info">
-          <dl class="fade-up">
+  <section id="access" class="block gap-l">
+    <h2 class="v-title">ACCESS<span class="jp">店舗情報</span></h2>
+    <div class="block__body">
+      <div class="info">
+        <div class="fade-up" style="flex:0 1 46%">
+          <dl>
             <div><dt>住所</dt><dd>4th floor, ２丁目-２７-2 北沢 世田谷区 東京都日本</dd></div>
             <div><dt>電話</dt><dd>070-4490-3918</dd></div>
             <div><dt>営業時間</dt><dd>10:00〜21:00</dd></div>
             <div><dt>定休日</dt><dd>—</dd></div>
-            <div><dt>席数</dt><dd>ご予約はお電話・メールで承ります</dd></div>
             <div><dt>アクセス</dt><dd>—</dd></div>
           </dl>
-          <div class="ph fade-up"><img src="https://images.unsplash.com/photo-1743359193531-985780ad04bc?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Mnx8bmFpbCUyMHNhbG9uJTIwc3RvcmVmcm9udCUyMGV4dGVyaW9yfGVufDF8MHx8fDE3ODcwNjI2OTR8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="外観" loading="lazy" decoding="async"></div>
         </div>
+        <div class="info__map ph fade-up"><img src="https://images.unsplash.com/photo-1763333412344-da6a9bb3b57b?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8MXx8bmFpbCUyMHNhbG9uJTIwc3RvcmVmcm9udCUyMGV4dGVyaW9yfGVufDF8MHx8fDE3ODcyMzY4ODR8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="外観" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
 
   
-  <section id="reserve" class="reserve">
+  <section id="reserve" class="reserve gap-l">
     <div class="fade-up">
-      <p class="reserve__en">RESERVATION</p>
-      <p class="reserve__jp">
-        <span class="np">ご希望の日時を、</span><span class="np">お気軽にお知らせください。</span>
-      </p>
-      <a class="btn" href="#reserve" aria-label="WEBで予約する">WEB予約<span class="plus"></span></a>
-      <p class="reserve__sub">
-        <span class="np">ご予約・ご相談は、</span><span class="np">お電話またはメールで承ります。</span><span class="np">営業は月曜から日曜まで、</span><span class="np">10時から21時までです。</span><span class="np">所在地は東京都世田谷区北沢、</span><span class="np">詳しい道順はご予約の際にお伝えします。</span>
+      <p class="eyebrow-en">— Reservation —</p>
+      <a class="wipe-btn" href="#reserve" aria-label="予約する"><span>RESERVATION</span></a>
+      <p class="tel">
+        070-4490-3918
       </p>
     </div>
   </section>
 
 </main>
-
 
 <footer>
   <span class="brand">Tokyo Nail Salon Top Coat - English Speaking</span>
@@ -697,11 +559,11 @@ div:has(> dd:empty){display:none !important}
   // スクロール出現（IntersectionObserver）
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
-  },{threshold:.14});
-  document.querySelectorAll('.fade-up,.wipe,.num').forEach(function(el){ io.observe(el); });
+  },{threshold:.15});
+  document.querySelectorAll('.fade-up,.tilt,.look__tag').forEach(function(el){ io.observe(el); });
 
 </script>
-<p class="photo-credit" style="font-size:11px;text-align:center;padding:12px 16px;margin:0">Photo by <a href="https://unsplash.com/@iprefermike?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Mike Cox</a>、<a href="https://unsplash.com/@element5digital?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Element5 Digital</a>、<a href="https://unsplash.com/@luandmario?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Maria Lupan</a>、<a href="https://unsplash.com/@marsnails?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Margarita Yutsaytis</a>、<a href="https://unsplash.com/@jung07011?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">한별 정</a>、<a href="https://unsplash.com/@luandmario?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Maria Lupan</a>、<a href="https://unsplash.com/@jung07011?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">한별 정</a>、<a href="https://unsplash.com/@marsnails?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Margarita Yutsaytis</a>、<a href="https://unsplash.com/@drewsonixx?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Ondrej Supitar</a>、<a href="https://unsplash.com/@kjtphoto?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Kelvin Taylor</a>、<a href="https://unsplash.com/@helloimnik?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Nik</a>、<a href="https://unsplash.com/@oliverguhr?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Oliver Guhr</a> on <a href="https://unsplash.com/?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></p>
+<p class="photo-credit" style="font-size:11px;text-align:center;padding:12px 16px;margin:0">Photo by <a href="https://unsplash.com/@luandmario?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Maria Lupan</a>、<a href="https://unsplash.com/@hngstrm?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">H&amp;CO</a>、<a href="https://unsplash.com/@designecologist?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">DESIGNECOLOGIST</a>、<a href="https://unsplash.com/@jojobean24?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Jodene Isakowitz</a>、<a href="https://unsplash.com/@buudkaanaa?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Budka Damdinsuren</a>、<a href="https://unsplash.com/@giorgiotrovato?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Giorgio Trovato</a>、<a href="https://unsplash.com/@leo_visions_?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Leo_Visions</a> on <a href="https://unsplash.com/?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></p>
 <section id="privacy-policy" class="legal">
   <div class="narrow">
     <h2>プライバシーポリシー</h2>
