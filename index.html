@@ -7,280 +7,251 @@
 
 <style>
   :root{
-    --paper:#f7f5ef;         
-    --paper-2:#efe9dc;       
-    --ink:#241f1c;           
-    --ink-soft:#6b6159;
-    --rule:#ded6c6;          
-    --rule-2:#c6bca6;
-    --seal:#8f3a2a;          
-    --slot-bg:rgba(36,31,28,.045);
-    --slot-line:#b3a992;
-    --jp:"游明朝",YuMincho,"Hiragino Mincho ProN","ヒラギノ明朝 ProN W3","Yu Mincho",serif;
-    --en:Georgia,"Times New Roman",serif;  
+    --paper:#ffffff;
+    --paper-2:#F2F2F5;       
+    --paper-3:#FAF9F8;       
+    --ink:#1C1C1C;
+    --ink-2:#55555c;
+    --gray:#818188;          
+    --gray-d:#6e6e75;        
+    --line:#dcdce1;
+    --slot-bg:rgba(28,28,28,.04);
+    --slot-line:#b5bcc4;
+    --slot-edge:#8e99a4;     
+    --jp:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic Medium",
+         "Yu Gothic","Meiryo",sans-serif;
     
-    --grain:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='170' height='170' filter='url(%23p)' opacity='0.085'/%3E%3C/svg%3E");
+    --num:ui-monospace,"SFMono-Regular",Menlo,Consolas,"Courier New",monospace;
+    
+    --space:clamp(46px,7vw,92px);
   }
+  
+  html{font-size:clamp(13px,0.29vw + 11.9px,16px);scroll-behavior:smooth}
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
   body{
-    background-color:var(--paper);
-    background-image:var(--grain);
-    background-size:170px 170px;
-    color:var(--ink);
-    font-family:var(--jp);font-size:14px;
-    line-height:2.05;letter-spacing:.07em;
+    background:var(--paper);color:var(--ink);
+    font-family:var(--jp);font-size:1rem;
+    line-height:1.9;letter-spacing:.06em;
     font-feature-settings:"palt";
     -webkit-font-smoothing:antialiased;
+    padding-top:104px;           
   }
   img{max-width:100%}
   a{color:var(--ink);text-decoration:none}
   
   .np{display:inline-block}
+  .num{font-family:var(--num);letter-spacing:.02em;font-feature-settings:normal}
 
   
-  .ph{position:relative;overflow:hidden;background:#e8e3d7}
+  
+  .ph{position:relative;overflow:hidden;background:#eceae6;
+    border:1px dashed var(--slot-edge)}
   .ph::after{ 
-    content:attr(data-slot);position:absolute;right:9px;bottom:8px;
-    font-family:var(--en);font-size:10px;letter-spacing:.14em;
-    color:rgba(36,31,28,.6);background:rgba(247,245,239,.86);
-    padding:3px 9px;border:1px dashed var(--slot-line);border-radius:2px;
-    line-height:1.6;white-space:nowrap}
+    content:attr(data-slot);position:absolute;right:6px;bottom:6px;
+    max-width:calc(100% - 12px);
+    font-family:var(--num);font-size:10px;letter-spacing:.06em;
+    color:rgba(28,28,28,.7);background:rgba(255,255,255,.88);
+    padding:3px 9px;border:1px solid var(--slot-edge);border-radius:2px;
+    line-height:1.7;text-align:right}
 
   
-  header{
-    position:fixed;inset:0 0 auto 0;z-index:50;
-    display:flex;align-items:center;justify-content:space-between;
-    gap:18px;padding:11px 5vw;
-    background-color:rgba(239,233,220,.94);
-    background-image:var(--grain);background-size:170px 170px;
-    border-bottom:1px solid var(--rule-2);
-    backdrop-filter:blur(4px);
-  }
-  .brand{display:flex;align-items:center;gap:11px}
   
-  .seal{flex:0 0 auto;width:29px;height:29px;background:var(--seal);
-    color:#fff;display:flex;align-items:center;justify-content:center;
-    font-size:15px;line-height:1;border-radius:2px}
-  .brand__name{font-size:16px;letter-spacing:.2em;line-height:1.5}
-  .brand__en{display:block;font-family:var(--en);font-style:italic;
-    font-size:10.5px;letter-spacing:.16em;color:var(--ink-soft);line-height:1.6}
-  nav{display:flex;gap:26px;align-items:center}
-  nav a{font-size:12.5px;letter-spacing:.14em}
-  nav a:hover{opacity:.45;transition:opacity .4s}
-  .btn-key{background:var(--ink);color:var(--paper);
-    padding:9px 22px;border-radius:3px;letter-spacing:.2em;
-    transition:opacity .4s}
-  .btn-key:hover{opacity:.72}
+  header{position:fixed;inset:0 0 auto 0;z-index:50;
+    background:rgba(255,255,255,.96);backdrop-filter:blur(6px);
+    padding:8px 0 14px;border-bottom:1px solid var(--line)}
+  header::before,header::after{content:"";position:absolute;left:0;right:0;
+    background-repeat:repeat-x;pointer-events:none}
+  header::before{top:0;height:8px;
+    background-image:repeating-linear-gradient(-45deg,
+      var(--gray) 0 1px,transparent 1px 6px)}
+  header::after{bottom:0;height:14px;
+    background-image:repeating-linear-gradient(-45deg,
+      var(--gray) 0 2px,transparent 2px 8px)}
+  .hd{width:min(83.33%,1240px);margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;gap:2rem;
+    padding:10px 0}
+  
+  .brand{display:flex;flex-direction:column;gap:2px;white-space:nowrap}
+  .brand__en{font-size:clamp(15px,1.35vw,19px);letter-spacing:.24em;
+    line-height:1.2}
+  .brand__jp{font-size:11px;letter-spacing:.16em;color:var(--ink-2);
+    line-height:1.2}
+  .hd nav{display:flex;align-items:center;gap:1.8rem}
+  .hd nav a{font-size:12px;letter-spacing:.16em;white-space:nowrap}
+  .hd nav a:hover{color:var(--gray-d);transition:color .3s}
+  .hd__cta{display:flex;gap:10px;flex:0 0 auto}
+  .btn{display:inline-flex;align-items:center;justify-content:center;
+    white-space:nowrap;border:1px solid var(--ink);
+    padding:11px 18px;font-size:12px;letter-spacing:.14em;line-height:1.5}
+  .btn--fill{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .btn:hover{opacity:.72;transition:opacity .3s}
 
   
-  .hero{padding:76px 0 0}
-  .hero__inner{max-width:1000px;margin:0 auto;padding:0 5vw}
   
-  .hero__photo{aspect-ratio:2/1;animation:soft-in 1.1s ease .1s both}
-  @keyframes soft-in{from{opacity:0}to{opacity:1}}
-  .hero__copy{margin-top:38px;font-size:clamp(23px,3.1vw,33px);
-    font-weight:normal;line-height:1.95;letter-spacing:.26em;
-    animation:soft-in 1.1s ease .35s both}
-  .hero__copy .ln{display:block}
-  .hero__where{margin-top:22px;font-size:13.5px;color:var(--ink-soft);
-    letter-spacing:.14em;animation:soft-in 1.1s ease .5s both}
-  
-  .hero__desk{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;
-    margin-top:26px;padding:18px 22px;border:1px solid var(--rule-2);
-    background:rgba(255,255,255,.46);
-    animation:soft-in 1.1s ease .65s both}
-  .hero__desk dl{display:flex;align-items:baseline;gap:10px}
-  .hero__desk dt{font-size:12px;letter-spacing:.18em;color:var(--ink-soft)}
-  .hero__desk dd{font-size:14.5px;letter-spacing:.1em}
-  .hero__desk .tel{font-family:var(--en);font-size:19px;letter-spacing:.04em}
-  .hero__desk .btn-key{margin-left:auto;font-size:13px}
+  .inbox{width:min(83.33%,1240px);margin:0 auto}
+  .inbox-min{width:min(87.5%,880px);margin:0 auto}
+  .sec{padding:var(--space) 0}
+  .sec--tint{background:var(--paper-3)}
 
   
-  .band{padding:0 0 76px}
-  .band__inner{max-width:1000px;margin:0 auto;padding:0 5vw}
   
-  .hd{border-top:1px solid var(--rule);padding-top:72px;margin-bottom:30px}
-  .hd__en{font-family:var(--en);font-style:italic;font-size:12.5px;
-    letter-spacing:.2em;color:var(--ink-soft)}
-  .hd h2{margin-top:5px;font-size:21px;font-weight:normal;
-    letter-spacing:.16em;line-height:1.9;position:relative;padding-left:24px}
-  
-  .hd h2::before{content:"";position:absolute;left:0;top:.92em;
-    width:13px;height:1px;background:var(--rule-2)}
-  .lead{max-width:34em;font-size:14.5px}
-  .note-s{margin-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:2}
+  .ttl{display:flex;flex-direction:column-reverse;align-items:flex-start;
+    gap:.55rem;margin-bottom:1.6rem}
+  .ttl::after{content:"";width:2rem;height:2px;background:currentColor;
+    opacity:.4}
+  .ttl__jp{font-size:clamp(21px,2.3vw,28px);font-weight:600;
+    letter-spacing:.22em;line-height:1.5}
+  .ttl__en{font-family:var(--num);font-size:11px;letter-spacing:.3em;
+    color:var(--gray-d);line-height:1.4}
+  .ttl--c{align-items:center;text-align:center}
+  .lead{max-width:34em;font-size:1rem;line-height:2}
+  .lead + .lead{margin-top:.7rem}
 
   
-  .grp{margin-top:34px;font-size:12.5px;letter-spacing:.26em;
-    color:var(--ink-soft)}
-  .grp:first-of-type{margin-top:26px}
-  .rows{list-style:none;margin-top:10px}
-  .row{display:flex;align-items:baseline;gap:18px;padding:12px 3px;
-    border-bottom:1px solid var(--rule);transition:border-color .4s}
-  .row:hover{border-color:var(--rule-2)}
-  .row__name{flex:1 1 auto;font-size:15px;letter-spacing:.12em}
-  .row__note{display:block;margin-top:2px;font-size:12.5px;
-    line-height:1.9;letter-spacing:.06em;color:var(--ink-soft)}
-  .row__pr{flex:0 0 auto;font-family:var(--en);font-size:16px;
-    letter-spacing:.04em}
   
-  .menu-note{margin-top:22px;max-width:34em;font-size:12.5px;
-    color:var(--ink-soft);line-height:2}
+  .mv{padding:calc(var(--space)*.8) 0 var(--space)}
+  .mv__head{text-align:center;margin-bottom:2.2rem}
+  .mv__catch{font-size:clamp(26px,4.4vw,44px);font-weight:600;
+    letter-spacing:.22em;line-height:1.75;
+    max-width:22ch;margin:0 auto}   
+  .mv__meta{margin-top:1.1rem;font-size:12.5px;letter-spacing:.2em;
+    color:var(--ink-2)}
+  .mv__meta .en{font-family:var(--num);letter-spacing:.16em}
+  .mv__photos{display:flex;gap:1.2rem;align-items:flex-end}
+  .mv__photo{flex:1 1 auto;aspect-ratio:16/9}
+  .mv__photo--sq{flex:0 0 clamp(150px,21%,250px);aspect-ratio:1/1}
 
   
-  .honest{margin-top:44px;border:1px solid var(--rule-2);
-    background:rgba(255,255,255,.5);padding:24px 26px 20px}
-  .honest h3{font-size:14.5px;font-weight:normal;letter-spacing:.18em}
-  .honest .note-s{margin-top:8px}
-  .honest dl{margin-top:14px}
-  .honest dl div{display:flex;align-items:baseline;gap:16px;
-    padding:10px 2px;border-bottom:1px dotted var(--rule-2)}
-  .honest dl div:last-child{border-bottom:0}
-  .honest dt{flex:1 1 auto;font-size:13.5px;letter-spacing:.1em}
-  .honest dd{flex:0 0 auto;font-size:13.5px;letter-spacing:.08em;
-    text-align:right}
-  .honest .free{color:var(--ink-soft)}
+  
+  .points{display:grid;gap:1.2rem;
+    grid-template-columns:repeat(auto-fit,minmax(238px,1fr))}
+  .card{background:var(--paper-2);padding:10px}
+  .card__in{border:2px solid var(--gray);padding:1.5rem 1.25rem;height:100%}
+  .card__no{display:block;font-family:var(--num);font-size:22px;
+    letter-spacing:.08em;color:var(--gray-d);
+    border-bottom:2px solid var(--gray);padding-bottom:.5rem;
+    margin-bottom:.9rem;line-height:1.2}
+  .card h3{font-size:1rem;font-weight:600;letter-spacing:.1em;line-height:1.8}
+  .card p{margin-top:.5rem;font-size:.92rem;line-height:1.95;color:var(--ink-2)}
 
   
-  .beans{list-style:none;margin-top:8px}
-  .bean{display:flex;align-items:flex-start;gap:18px;padding:19px 3px;
-    border-bottom:1px solid var(--rule)}
-  .bean__no{flex:0 0 2.2em;font-family:var(--en);font-style:italic;
-    font-size:14px;color:var(--ink-soft);line-height:2.2}
-  .bean__body{flex:1 1 auto}
+  .grp + .grp{margin-top:2.6rem}
   
-  .bean__name{display:block;font-size:16px;letter-spacing:.14em;line-height:1.9}
-  .bean__meta{display:block;margin-top:2px;font-size:12.5px;
-    letter-spacing:.16em;color:var(--ink-soft);line-height:1.9}
-  .bean__desc{display:block;margin-top:6px;font-size:13.5px;line-height:2;
-    max-width:32em}
-  .bean__pr{flex:0 0 auto;font-family:var(--en);font-size:15px;
-    letter-spacing:.04em;line-height:2.3}
+  .grp__head{display:flex;flex-wrap:wrap;align-items:baseline;
+    justify-content:space-between;gap:.4rem 1.5rem;
+    background:var(--gray-d);color:#fff;padding:.85rem 1.15rem}
+  .grp__name{font-size:1.06rem;font-weight:600;letter-spacing:.12em;
+    line-height:1.6}
+  .grp__en{font-family:var(--num);font-size:11.5px;letter-spacing:.22em;
+    opacity:.92;line-height:1.6}
+  .grp__body{padding:1.15rem 0 0}
+  
+  .grp__note{margin-top:.55rem;font-size:.86rem;letter-spacing:.08em;
+    color:var(--ink-2)}
+  .rows{margin-top:1rem;border-top:1px solid var(--line)}
+  
+  .row{display:flex;flex-wrap:wrap;align-items:baseline;
+    justify-content:space-between;gap:.2rem 1.2rem;padding:.7rem 1.15rem}
+  .rows .row:nth-child(odd){background:var(--paper-2)}
+  .row__name{font-size:.98rem;letter-spacing:.08em;min-width:0}
+  .row__price{font-family:var(--num);font-size:22px;letter-spacing:.02em;
+    white-space:nowrap;line-height:1.5}
+  .row--add .row__price{font-size:19px;color:var(--ink-2)}
+  .menu-note{max-width:40em;margin-top:1.6rem;font-size:.88rem;
+    line-height:1.95;color:var(--ink-2)}
+  .price-foot{margin-top:2.6rem;display:flex;flex-wrap:wrap;gap:1.4rem}
+  .price-foot > *{flex:1 1 300px}
 
   
-  .reserve{background-color:var(--paper-2);background-image:var(--grain);
-    background-size:170px 170px}
-  .reserve .hd{border-top:0}
-  .ways{display:flex;gap:20px;margin-top:6px}
-  .way{flex:1 1 0;border:1px solid var(--rule-2);padding:24px 24px 26px;
-    background:rgba(255,255,255,.44)}
-  
-  .way__label{display:block;font-size:12.5px;letter-spacing:.22em;
-    color:var(--ink-soft)}
-  .way__value{display:block;margin-top:10px;font-family:var(--en);
-    font-size:25px;letter-spacing:.05em;line-height:1.5}
-  .way__note{margin-top:10px;font-size:12.5px;line-height:2;
-    color:var(--ink-soft)}
-  .way .btn-key{display:inline-block;margin-top:12px;font-size:13.5px;
-    padding:13px 34px}
-  .promise{list-style:none;margin-top:30px}
-  .promise li{position:relative;padding:9px 0 9px 22px;font-size:13.5px;
-    line-height:2;border-bottom:1px solid var(--rule)}
-  .promise li::before{content:"";position:absolute;left:2px;top:1.28em;
-    width:7px;height:1px;background:var(--rule-2)}
+  .cc{display:flex;gap:2.4rem;align-items:flex-start}
+  .cc__photo{flex:0 0 38%;aspect-ratio:4/3}
+  .cc__text{flex:1 1 auto}
+  .cc__decl{font-size:clamp(18px,2vw,24px);font-weight:600;
+    letter-spacing:.14em;line-height:1.8;margin-bottom:.9rem}
 
   
-  .pledges{display:grid;grid-template-columns:1fr 1fr;gap:28px 44px;
-    margin-top:38px}
-  .pledge{border-top:1px solid var(--rule);padding-top:15px}
-  .pledge__no{font-size:12px;letter-spacing:.3em;color:var(--ink-soft)}
-  .pledge h3{margin-top:5px;font-size:16px;font-weight:normal;
-    letter-spacing:.14em;line-height:1.9}
-  .pledge p{margin-top:7px;font-size:13px;line-height:2;color:var(--ink-soft)}
-  .strip{display:flex;gap:12px;margin-top:40px}
-  .strip .ph{flex:1 1 0;aspect-ratio:3/2}
+  .access{display:flex;gap:2.4rem;align-items:flex-start}
+  .access__body{flex:1 1 auto}
+  .info div{display:flex;gap:1rem;border-bottom:1px solid var(--line);
+    padding:.8rem .2rem}
+  .info dt{flex:0 0 7em;font-size:.88rem;color:var(--ink-2);
+    letter-spacing:.12em}
+  .info dd{flex:1 1 auto;font-size:.96rem;min-width:0}
+  .info__map{flex:0 0 40%;aspect-ratio:4/3}
 
   
-  .person{display:flex;align-items:flex-start;gap:6%}
-  .person__photo{flex:0 0 36%;aspect-ratio:3/4}
-  .person__body{flex:1 1 auto}
-  .person__name{font-size:18px;letter-spacing:.16em;line-height:1.8}
-  .person__role{display:block;font-size:12.5px;letter-spacing:.2em;
-    color:var(--ink-soft);line-height:1.9}
-  .person dl{margin-top:18px}
-  .person dl div{display:flex;align-items:baseline;gap:16px;padding:11px 2px;
-    border-bottom:1px solid var(--rule)}
-  .person dt{flex:0 0 9.5em;font-size:12.5px;letter-spacing:.14em;
-    color:var(--ink-soft)}
-  .person dd{flex:1 1 auto;font-size:13.5px;line-height:1.95}
+  .reserve{text-align:center}
+  .reserve__btns{margin-top:1.6rem;display:flex;gap:1rem;
+    justify-content:center;flex-wrap:wrap}
+  .btn-lg{display:inline-flex;align-items:center;justify-content:center;
+    min-width:min(300px,84vw);padding:21px 30px;
+    border:1px solid var(--ink);font-size:15px;letter-spacing:.2em;
+    line-height:1.5;white-space:nowrap}
+  .btn-lg--fill{background:var(--ink);color:#fff}
+  .btn-lg:hover{opacity:.75;transition:opacity .3s}
+  .reserve__tel{margin-top:1.4rem;font-size:.95rem;letter-spacing:.12em}
 
   
-  .access{display:flex;align-items:flex-start;gap:6%}
-  .access__body{flex:1 1 0}
-  .access dl div{display:flex;align-items:baseline;gap:16px;padding:11px 2px;
-    border-bottom:1px solid var(--rule)}
-  .access dt{flex:0 0 7em;font-size:12.5px;letter-spacing:.14em;
-    color:var(--ink-soft)}
-  .access dd{flex:1 1 auto;font-size:13.5px;line-height:1.95}
-  .access .ph{flex:0 0 44%;aspect-ratio:4/3}
+  footer{margin-top:var(--space);border-top:1px solid var(--line);
+    padding:2.8rem 0 3.4rem;text-align:center}
+  footer .brand{align-items:center;margin-bottom:1rem}
+  footer p{font-size:.85rem;line-height:2;color:var(--ink-2)}
+  footer small{display:block;margin-top:1.6rem;font-family:var(--num);
+    font-size:10px;letter-spacing:.2em;color:var(--ink-2)}
 
   
-  footer{border-top:1px solid var(--rule-2);padding:52px 5vw 96px;
-    text-align:center}
-  footer .brand{justify-content:center}
-  footer p{margin-top:18px;font-size:12.5px;color:var(--ink-soft);
-    line-height:2.1}
-  .sns{display:flex;justify-content:center;gap:12px;margin-top:22px}
-  .sns a{width:34px;height:34px;border:1px solid var(--rule-2);
-    border-radius:50%;display:flex;align-items:center;justify-content:center;
-    font-family:var(--en);font-style:italic;font-size:12px;
-    color:var(--ink-soft);transition:opacity .4s}
-  .sns a:hover{opacity:.5}
-  footer small{display:block;margin-top:26px;font-family:var(--en);
-    font-size:10px;letter-spacing:.2em;color:var(--ink-soft)}
-
   
   .sp-bar{display:none}
+  @media(max-width:1100px){
+    .hd nav{display:none}
+  }
   @media(max-width:820px){
-    nav a:not(.btn-key){display:none}
-    .brand__en{display:none}
-    .hero{padding-top:66px}
-    .hero__photo{aspect-ratio:4/3}
-    .hero__copy{margin-top:30px;letter-spacing:.24em}
-    .hero__desk{gap:12px 18px;padding:16px 18px}
-    .hero__desk .btn-key{margin-left:0;width:100%;text-align:center}
-    .band{padding-bottom:60px}
-    .hd{padding-top:56px}
-    .row{gap:12px}
-    .bean{gap:12px}
-    .bean__desc{max-width:none}
-    .ways{flex-direction:column;gap:14px}
-    .pledges{grid-template-columns:1fr;gap:22px}
+    body{padding-top:96px;padding-bottom:56px}
+    .inbox,.inbox-min,.hd{width:87.5%}
+    .hd{gap:1rem}
     
-    .strip{flex-direction:column;align-items:stretch;gap:10px}
-    .person,.access{flex-direction:column;align-items:stretch;gap:28px}
-    .person__photo{flex:none;width:66%;max-width:280px}
-    .access .ph{flex:none;width:100%}
-    
-    .person dl div{flex-direction:column;align-items:stretch;gap:0;
-      padding:12px 2px}
-    .person dt{flex:none}
-    .person dd{flex:none;margin-top:1px}
-    .access dt{flex:0 0 6em}
+    .hd__cta .btn:not(.btn--fill){display:none}
+    .hd__cta .btn{padding:10px 13px;font-size:11.5px}
+    .brand{min-width:0;max-width:100%}
+    .brand__en,.brand__jp{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+    .brand__jp{font-size:10.5px}
+    .mv__photos{flex-direction:column;align-items:stretch}
+    .mv__photo--sq{flex:0 0 auto;width:52%;align-self:flex-end}
+    .price-foot{gap:2rem}
+    .cc,.access{flex-direction:column;gap:1.6rem}
+    .cc__photo,.info__map{flex:0 0 auto;width:100%}
+    .info dt{flex:0 0 5.6em}
     .sp-bar{display:flex;position:fixed;inset:auto 0 0 0;z-index:60}
-    .sp-bar a{flex:1;text-align:center;padding:15px 0;font-size:13.5px;
-      letter-spacing:.18em;color:var(--paper);background:var(--ink)}
-    .sp-bar a+a{border-left:1px solid rgba(247,245,239,.28)}
-    body{padding-bottom:52px}
-    footer{padding-bottom:64px}
+    .sp-bar a{flex:1;text-align:center;padding:15px 0;font-size:12.5px;
+      letter-spacing:.12em;color:#fff;background:var(--ink)}
+    .sp-bar a + a{border-left:1px solid rgba(255,255,255,.25)}
   }
 
+  
+  
+  .js .fade-up{opacity:0;transform:translateY(24px);
+    transition:opacity .8s ease-out,transform .8s ease-out}
+  .js .fade-up.show{opacity:1;transform:none}
+
   @media(prefers-reduced-motion:reduce){
-    
     *{animation:none!important;transition:none!important}
-    .hero__photo,.hero__copy,.hero__where,.hero__desk{opacity:1}
+    
+    .js .fade-up{opacity:1;transform:none}
     html{scroll-behavior:auto}
   }
 
   @media(max-width:820px){}
-  .spec{max-width:1000px;margin:70px auto 56px;padding:32px 5vw;
+  
+  .spec{max-width:1080px;margin:70px auto 60px;padding:34px 4vw;
     border:1px dashed var(--slot-line);background:var(--slot-bg);
-    font-size:12.5px;line-height:2.05;color:var(--ink);overflow-x:auto}
-  .spec h3{font-size:13px;letter-spacing:.2em;margin-bottom:10px;
-    font-weight:normal}
+    font-size:12.5px;line-height:2.1;color:var(--ink);overflow-x:auto}
+  .spec h3{font-size:13px;letter-spacing:.2em;margin-bottom:10px}
+  
+  .spec strong{display:block;margin-top:.5em}
+  
+  .spec code{display:inline-block;white-space:nowrap}
   .spec table{border-collapse:collapse;width:100%;margin:10px 0}
-  .spec td,.spec th{border:1px solid var(--rule-2);padding:5px 12px;
+  .spec td,.spec th{border:1px solid var(--gray);padding:5px 12px;
     text-align:left;font-weight:normal;font-size:12px}
 
 
@@ -289,6 +260,8 @@
 .ph>img,.ph .slide>img{width:100%;height:100%;object-fit:cover;display:block}
 .ph .slide{background-size:cover;background-position:center}
 </style>
+
+<script>document.documentElement.classList.add('js')</script>
 <meta name="description" content="ネイルサロンのTokyo Nail Salon Top Coat - English Speaking。4th floor, ２丁目-２７-2 北沢 世田谷区 東京都 155-0031 日本にて営業中。お気軽にお問い合わせください。">
 <meta property="og:title" content="Tokyo Nail Salon Top Coat - English Speaking">
 <meta property="og:description" content="ネイルサロンのTokyo Nail Salon Top Coat - English Speaking。4th floor, ２丁目-２７-2 北沢 世田谷区 東京都 155-0031 日本">
@@ -354,401 +327,388 @@ div:has(> dd:empty){display:none !important}
 </style>
 </head>
 <body>
-<nav class="vbar" aria-label="デザイン案の切り替え"><div class="wrap vbar__inner"><span class="vbar__note">エレノアがTokyo Nail Salon Top Coat - English Speaking様へのご提案として作成した見本です。Tokyo Nail Salon Top Coat - English Speaking様ご自身が公開されているものではありません。</span><ul class="vbar__list"><li><a class="vbar__link" href="./" aria-current="page">1　誠実な開示</a></li><li><a class="vbar__link" href="2/">2　静かな信頼</a></li><li><a class="vbar__link" href="3/">3　動きで魅せる（リッチプラン専用デザイン）</a></li></ul></div></nav>
+<nav class="vbar" aria-label="デザイン案の切り替え"><div class="wrap vbar__inner"><span class="vbar__note">エレノアがTokyo Nail Salon Top Coat - English Speaking様へのご提案として作成した見本です。Tokyo Nail Salon Top Coat - English Speaking様ご自身が公開されているものではありません。</span><ul class="vbar__list"><li><a class="vbar__link" href="./" aria-current="page">1　料金表が主役</a></li><li><a class="vbar__link" href="2/">2　入口で分ける</a></li><li><a class="vbar__link" href="3/">3　動きで魅せる（リッチプラン専用デザイン）</a></li></ul></div></nav>
+
 
 <header>
-  <span class="brand">
-    <span class="seal" aria-hidden="true">爪</span>
-    <span class="brand__name">
-      Tokyo Nail Salon Top Coat - English Speaking
-      <span class="brand__en">TOP COAT</span>
-    </span>
-  </span>
-  <nav>
-    <a href="#menu">お品書き</a>
-    <a href="#beans">豆のこと</a>
-    <a href="#about">この店について</a>
-    <a href="#access">アクセス</a>
-    <a class="btn-key" href="#reserve">ご予約</a>
-  </nav>
+  <div class="hd">
+    <a class="brand" href="#top">
+      <span class="brand__en">Tokyo Nail Salon Top Coat - English Speaking</span>
+      <span class="brand__jp">Tokyo Nail Salon Top Coat - English Speaking</span>
+    </a>
+    <nav>
+      <a href="#point">POINT</a>
+      <a href="#price">PRICE MENU</a>
+      <a href="#concept">CONCEPT</a>
+      <a href="#access">ACCESS</a>
+    </nav>
+    <div class="hd__cta">
+      <a class="btn btn--fill" href="#reserve">WEB予約</a>
+      <a class="btn" href="tel:0300000000">お電話</a>
+    </div>
+  </div>
 </header>
 
-<main>
+<main id="top">
 
   
-  <div class="hero">
-    <div class="hero__inner">
-      <div class="hero__photo ph"><img src="https://images.unsplash.com/photo-1770980397103-c2522562e16f?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8MXx8bmFpbCUyMHNhbG9uJTIwaW50ZXJpb3J8ZW58MXwwfHx8MTc4NzIzNjg4MHww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="店内の空気が分かる写真（人物なしで可）" loading="eager" fetchpriority="high" decoding="async"></div>
-      <h1 class="hero__copy">
-        <span class="ln"><span class="np">指先の</span><span class="np">時間を</span><span class="np">ととのえる</span></span><span class="ln"><span class="np">英語でも</span><span class="np">日本語でも</span><span class="np">ご相談を</span></span><span class="ln"><span class="np">北沢の</span><span class="np">ネイルサロン</span></span>
-      </h1>
-      <p class="hero__where">
-        <span class="np">ネイルサロン｜</span><span class="np">世田谷区北沢｜</span><span class="np">毎日10時から21時まで</span>
-      </p>
-      <div class="hero__desk">
-        <dl>
-          <dt>本日</dt>
-          <dd>10:00〜21:00</dd>
-        </dl>
-        <dl>
-          <dt>お電話</dt>
-          <dd class="tel">070-4490-3918</dd>
-        </dl>
-        <a class="btn-key" href="#reserve">席のご予約</a>
+  <div class="mv">
+    <div class="inbox">
+      <div class="mv__head">
+        <h1 class="mv__catch">
+          <span class="np">ととのえた指先で、</span><span class="np">今日を始める。</span>
+        </h1>
+        <p class="mv__meta">
+          Tokyo Nail Salon Top Coat - English Speaking｜東京都世田谷区北沢のネイルサロン
+        </p>
+      </div>
+      <div class="mv__photos">
+        <div class="mv__photo ph"><img src="https://images.unsplash.com/photo-1667207229735-266c430cca15?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Nnx8bmFpbCUyMHNhbG9uJTIwaGFuZHMlMjBjbG9zZXVwfGVufDF8MHx8fDE3ODcyNzQ3MTV8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="目もと or 施術の主写真" loading="eager" fetchpriority="high" decoding="async"></div>
+        <div class="mv__photo--sq ph"><img src="https://images.unsplash.com/photo-1763741141049-352dfafcc64f?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8MXx8bmFpbCUyMHNhbG9uJTIwaW50ZXJpb3J8ZW58MXwyfHx8MTc4NzI3NDczMHww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="店内 or 道具" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </div>
 
   
-  <section id="menu" class="band">
-    <div class="band__inner">
-      <div class="hd">
-        <span class="hd__en">MENU</span>
-        <h2><span class="np">メニューと</span><span class="np">料金</span></h2>
+  <section id="point" class="sec sec--tint">
+    <div class="inbox">
+      <h2 class="ttl">
+        <span class="ttl__jp">大切にしていること</span>
+        <span class="ttl__en">Our Approach</span>
+      </h2>
+      <div class="points fade-up">
+        <div class="card">
+          <div class="card__in">
+            <span class="card__no">01</span>
+            <h3>英語でも、日本語でも</h3>
+            <p><span class="np">英語でも日本語でも、</span><span class="np">デザインや爪の状態をご相談いただけます。</span><span class="np">言葉の行き違いがないよう、</span><span class="np">希望を確かめてから始めます。</span></p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__in">
+            <span class="card__no">02</span>
+            <h3>毎日、夜9時まで</h3>
+            <p><span class="np">月曜から日曜まで、</span><span class="np">毎日10時から21時まで開けています。</span><span class="np">仕事帰りでも、</span><span class="np">休みの日の朝でもお選びいただけます。</span></p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__in">
+            <span class="card__no">03</span>
+            <h3>一人ひとりの爪に合わせて</h3>
+            <p><span class="np">爪の長さや形、</span><span class="np">生活の中での使い方はそれぞれ違います。</span><span class="np">当日の状態を見てから、</span><span class="np">デザインと長さをご一緒に決めます。</span></p>
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
+
+  
+  
+  <section id="price" class="sec">
+    <div class="inbox-min">
+      <h2 class="ttl">
+        <span class="ttl__jp">メニュー</span>
+        <span class="ttl__en">Menu</span>
+      </h2>
       <p class="lead">
-        <span class="np">ハンド・フット・</span><span class="np">ジェルオフまで、</span><span class="np">一般的な施術を</span><span class="np">ひととおり</span><span class="np">ご用意しています。</span><span class="np">お好みでお選びください。</span>
+        <span class="np">ハンドもフットも、</span><span class="np">ジェルとケアを中心に、</span><span class="np">普段づかいの内容です。</span><span class="np">本数やアートの数で、</span><span class="np">手数と時間が変わります。</span><span class="np">気になる項目はお尋ねください。</span>
       </p>
 
-      <p class="grp">ハンドネイル</p>
-      <ul class="rows">
-        <li class="row">
-          <span class="row__name">
-            ワンカラージェル
-            <span class="row__note"><span class="np">単色で仕上げる</span><span class="np">定番のジェルネイル。</span><span class="np">所要はおよそ90分です。</span></span>
-          </span>
-          <span class="row__pr">—</span>
-        </li>
-        <li class="row">
-          <span class="row__name">
-            グラデーションジェル
-            <span class="row__note"><span class="np">爪先へ向けて色を重ねる</span><span class="np">仕上がり。</span><span class="np">所要はおよそ100分です。</span></span>
-          </span>
-          <span class="row__pr">—</span>
-        </li>
-        <li class="row">
-          <span class="row__name">
-            デザインジェル
-            <span class="row__note"><span class="np">ラメやストーン、</span><span class="np">アートを加えた仕上がり。</span><span class="np">所要は約120分です。</span></span>
-          </span>
-          <span class="row__pr">—</span>
-        </li>
-        <li class="row">
-          <span class="row__name">
-            ケアのみ
-            <span class="row__note"><span class="np">甘皮まわりと爪の形を</span><span class="np">ととのえます。所要は約45分。</span></span>
-          </span>
-          <span class="row__pr">—</span>
-        </li>
-        <li class="row">
-          <span class="row__name">
-            ジェルオフ
-            <span class="row__note"><span class="np">他店の仕上がりも承ります。</span><span class="np">所要はおよそ30分です。</span></span>
-          </span>
-          <span class="row__pr">—</span>
-        </li>
-        <li class="row">
-          <span class="row__name">
-            ネイルリペア
-            <span class="row__note"><span class="np">欠けた部分の</span><span class="np">部分的なお直し。</span><span class="np">所要はおよそ30分です。</span></span>
-          </span>
-          <span class="row__pr">—</span>
-        </li>
-      </ul>
+      <div class="grp fade-up">
+        <div class="grp__head">
+          <h3 class="grp__name">ジェルネイル</h3>
+          <span class="grp__en">Gel Nail</span>
+        </div>
+        <div class="grp__body">
+          <p class="lead">
+            <span class="np">ワンカラーからニュアンスまで、</span><span class="np">ジェルで色と形をつくります。</span><span class="np">両手と片手、フットで</span><span class="np">塗る本数が違うため、</span><span class="np">本数ごとに分けています。</span>
+          </p>
+          <p class="grp__note">
+            所要の目安はご予約のときにお伝えします。
+          </p>
+          <div class="rows">
+            <div class="row">
+              <span class="row__name">両手10本</span>
+              <span class="row__price">—</span>
+            </div>
+            <div class="row">
+              <span class="row__name">片手5本</span>
+              <span class="row__price">—</span>
+            </div>
+            <div class="row">
+              <span class="row__name">フット10本</span>
+              <span class="row__price">—</span>
+            </div>
+            <div class="row">
+              <span class="row__name">フット親指2本</span>
+              <span class="row__price">—</span>
+            </div>
+            <div class="row">
+              <span class="row__name">ハンドとフット</span>
+              <span class="row__price">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <p class="grp">フットネイル</p>
-      <ul class="rows">
-        <li class="row">
-          <span class="row__name">
-            フットワンカラージェル
-            <span class="row__note"><span class="np">足の爪を単色で仕上げます。</span><span class="np">所要はおよそ90分です。</span></span>
-          </span>
-          <span class="row__pr">—</span>
-        </li>
-        <li class="row">
-          <span class="row__name">
-            フットデザインジェル
-            <span class="row__note"><span class="np">足の爪にアートを加えます。</span><span class="np">所要はおよそ110分です。</span></span>
-          </span>
-          <span class="row__pr">—</span>
-        </li>
-        <li class="row">
-          <span class="row__name">
-            フットケア
-            <span class="row__note"><span class="np">足の爪の形と甘皮を</span><span class="np">ととのえます。所要は約50分。</span></span>
-          </span>
-          <span class="row__pr">—</span>
-        </li>
-      </ul>
+      <div class="grp fade-up">
+        <div class="grp__head">
+          <h3 class="grp__name">ネイルケア</h3>
+          <span class="grp__en">Nail Care</span>
+        </div>
+        <div class="grp__body">
+          <p class="lead">
+            <span class="np">甘皮まわりと爪の形を整えて、</span><span class="np">表面をなめらかにします。</span><span class="np">ハンドとフットでは</span><span class="np">触れる範囲と手数が違うため、</span><span class="np">それぞれで分けています。</span>
+          </p>
+          <div class="rows">
+            <div class="row">
+              <span class="row__name">ハンド10本</span>
+              <span class="row__price">—</span>
+            </div>
+            <div class="row">
+              <span class="row__name">フット10本</span>
+              <span class="row__price">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grp fade-up">
+        <div class="grp__head">
+          <h3 class="grp__name">ネイルアート</h3>
+          <span class="grp__en">Nail Art</span>
+        </div>
+        <div class="grp__body">
+          <p class="lead">
+            <span class="np">ラインやストーン、ミラーなど、</span><span class="np">一本ずつ手で描き入れます。</span><span class="np">描く本数が増えるほど時間がかかるため、</span><span class="np">本数で分けています。</span>
+          </p>
+          <p class="grp__note">
+            当日にデザインをご相談いただけます。
+          </p>
+          <div class="rows">
+            <div class="row">
+              <span class="row__name">1本</span>
+              <span class="row__price">—</span>
+            </div>
+            <div class="row">
+              <span class="row__name">3本</span>
+              <span class="row__price">—</span>
+            </div>
+            <div class="row">
+              <span class="row__name">5本</span>
+              <span class="row__price">—</span>
+            </div>
+            <div class="row">
+              <span class="row__name">10本すべて</span>
+              <span class="row__price">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grp fade-up">
+        <div class="grp__head">
+          <h3 class="grp__name">オフ</h3>
+          <span class="grp__en">Removal</span>
+        </div>
+        <div class="grp__body">
+          <p class="lead">
+            <span class="np">前回のジェルを落としてから、</span><span class="np">次の施術に入ります。</span><span class="np">当店でお付けしたものと</span><span class="np">他店でお付けしたものでは</span><span class="np">落とすまでの手数が変わります。</span>
+          </p>
+          <div class="rows">
+            <div class="row">
+              <span class="row__name">当店のジェル</span>
+              <span class="row__price">—</span>
+            </div>
+            <div class="row">
+              <span class="row__name">他店のジェル</span>
+              <span class="row__price">—</span>
+            </div>
+            <div class="row">
+              <span class="row__name">長さ出しあり</span>
+              <span class="row__price">—</span>
+            </div>
+            <div class="row">
+              <span class="row__name">フット10本</span>
+              <span class="row__price">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grp fade-up">
+        <div class="grp__head">
+          <h3 class="grp__name">リペア</h3>
+          <span class="grp__en">Repair</span>
+        </div>
+        <div class="grp__body">
+          <p class="lead">
+            <span class="np">欠けや浮きが出たときは、</span><span class="np">その一本だけを直せます。</span><span class="np">全部をやり直さずに済むよう、</span><span class="np">一本ごとにお受けしています。</span>
+          </p>
+          <div class="rows">
+            <div class="row">
+              <span class="row__name">1本ごと</span>
+              <span class="row__price">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
       
-      <div class="honest">
-        <h3><span class="np">料金の</span><span class="np">お伝えについて</span></h3>
-        <p class="note-s">
-          <span class="np">料金はご予約時と</span><span class="np">施術前に、</span><span class="np">口頭でご案内します。</span>
-        </p>
-        <dl>
-          <div>
-            <dt>ストーン・パーツ追加</dt>
-            <dd>ご相談ください</dd>
+      <div class="price-foot">
+        <div class="grp fade-up" style="margin-top:0">
+          <div class="grp__head">
+            <h3 class="grp__name">デザインのオプション</h3>
+            <span class="grp__en">Design Options</span>
           </div>
-          <div>
-            <dt>アート（1本ごと）</dt>
-            <dd>ご相談ください</dd>
+          <div class="grp__body">
+            <div class="rows" style="margin-top:0">
+              <div class="row row--add">
+                <span class="row__name">ラメライン</span>
+                <span class="row__price">—</span>
+              </div>
+              <div class="row row--add">
+                <span class="row__name">ストーン</span>
+                <span class="row__price">—</span>
+              </div>
+              <div class="row row--add">
+                <span class="row__name">ミラー</span>
+                <span class="row__price">—</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <dt>長さ出し</dt>
-            <dd class="free">ご相談ください</dd>
-          </div>
-          <div>
-            <dt>ジェルオフ（他店分）</dt>
-            <dd class="free">ご相談ください</dd>
-          </div>
-          <div>
-            <dt>爪のリペア</dt>
-            <dd class="free">ご相談ください</dd>
-          </div>
-        </dl>
-      </div>
-
-      <p class="menu-note">
-        <span class="np">お支払い方法と</span><span class="np">消費税の扱いについては、</span><span class="np">お電話またはメールで</span><span class="np">お問い合わせください。</span>
-      </p>
-    </div>
-  </section>
-
-  
-  <section id="beans" class="band">
-    <div class="band__inner">
-      <div class="hd">
-        <span class="hd__en">GALLERY</span>
-        <h2><span class="np">デザイン</span><span class="np">作例</span></h2>
-      </div>
-      <p class="lead">
-        <span class="np">当店で実際にお作りした</span><span class="np">仕上がりを掲載しています。</span><span class="np">写真と同じ雰囲気で、</span><span class="np">というご相談も</span><span class="np">承っています。</span><span class="np">お気軽にお申し付けください。</span>
-      </p>
-      <ul class="beans">
-        <li class="bean">
-          <span class="bean__no">01</span>
-          <span class="bean__body">
-            <span class="bean__name">ワンカラー</span>
-            <span class="bean__meta">ハンド／ジェル</span>
-            <span class="bean__desc"><span class="np">色を一色だけ使う</span><span class="np">いちばん静かな仕上がり。</span><span class="np">服にも仕事にも</span><span class="np">なじみます。</span></span>
-          </span>
-          <span class="bean__pr">ご相談ください</span>
-        </li>
-        <li class="bean">
-          <span class="bean__no">02</span>
-          <span class="bean__body">
-            <span class="bean__name">グラデーション</span>
-            <span class="bean__meta">ハンド／ジェル</span>
-            <span class="bean__desc"><span class="np">根元から爪先へ、</span><span class="np">色が少しずつ濃くなる</span><span class="np">仕上がり。伸びてきても</span><span class="np">境目が目立ちにくい形です。</span></span>
-          </span>
-          <span class="bean__pr">お問い合わせください</span>
-        </li>
-        <li class="bean">
-          <span class="bean__no">03</span>
-          <span class="bean__body">
-            <span class="bean__name">ニュアンスアート</span>
-            <span class="bean__meta">ハンド／ジェル</span>
-            <span class="bean__desc"><span class="np">筆あとやくすみ色を</span><span class="np">重ねた一点もの。</span><span class="np">同じものは二つとできません。</span></span>
-          </span>
-          <span class="bean__pr">ご相談ください</span>
-        </li>
-        <li class="bean">
-          <span class="bean__no">04</span>
-          <span class="bean__body">
-            <span class="bean__name">フレンチ</span>
-            <span class="bean__meta">ハンド／ジェル</span>
-            <span class="bean__desc"><span class="np">爪先だけに色を置く形。</span><span class="np">線の太さと色みを変えると</span><span class="np">印象が変わるので、</span><span class="np">当日ご相談ください。</span></span>
-          </span>
-          <span class="bean__pr">ご相談ください</span>
-        </li>
-        <li class="bean">
-          <span class="bean__no">05</span>
-          <span class="bean__body">
-            <span class="bean__name">フットワンカラー</span>
-            <span class="bean__meta">フット／ジェル</span>
-            <span class="bean__desc"><span class="np">足の爪を単色で。</span><span class="np">サンダルの季節に</span><span class="np">選ばれることが多い形です。</span></span>
-          </span>
-          <span class="bean__pr">ご相談ください</span>
-        </li>
-      </ul>
-      <p class="note-s">
-        <span class="np">掲載しているのは</span><span class="np">すべて当店の作例です。</span><span class="np">写真は仕上がりの一例で、</span><span class="np">爪の形により見え方は</span><span class="np">変わります。</span>
-      </p>
-    </div>
-  </section>
-
-  
-  <section id="reserve" class="band reserve">
-    <div class="band__inner">
-      <div class="hd">
-        <span class="hd__en">RESERVE</span>
-        <h2><span class="np">ご予約の</span><span class="np">ながれ</span></h2>
-      </div>
-      <div class="ways">
-        <div class="way">
-          <span class="way__label">お電話でのご予約</span>
-          <a class="way__value" href="tel:0300000000">070-4490-3918</a>
-          <p class="way__note">
-            <span class="np">営業時間内にお受けします。</span><span class="np">施術中は出られないことが</span><span class="np">ありますので、その際は</span><span class="np">時間をおいておかけ直しください。</span>
-          </p>
         </div>
-        <div class="way">
-          <span class="way__label">メールでのご予約</span>
-          <a class="btn-key" href="#reserve">メールでご予約する</a>
-          <p class="way__note">
-            <span class="np">ご希望の日時を第二希望まで、</span><span class="np">施術内容とあわせてお送りください。</span><span class="np">営業時間内に</span><span class="np">順にご返信します。</span>
+
+        <div class="grp fade-up" style="margin-top:0">
+          <div class="grp__head">
+            <h3 class="grp__name">そのほかのメニュー</h3>
+            <span class="grp__en">Other Menu</span>
+          </div>
+          <div class="grp__body">
+            <div class="rows" style="margin-top:0">
+              <div class="row">
+                <span class="row__name">ポリッシュ</span>
+                <span class="row__price">—</span>
+              </div>
+              <div class="row">
+                <span class="row__name">長さ出し</span>
+                <span class="row__price">—</span>
+              </div>
+              <div class="row row--add">
+                <span class="row__name">ハンドの保湿ケア</span>
+                <span class="row__price">—</span>
+              </div>
+              <div class="row row--add">
+                <span class="row__name">フットの保湿ケア</span>
+                <span class="row__price">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="menu-note fade-up">
+        <span class="np">料金と所要の目安は、</span><span class="np">お電話またはメールでお伝えしています。</span><span class="np">オフの有無で所要が変わります。</span><span class="np">はじめての方は、ご相談の時間を含めて少し長めにお取りください。</span><span class="np">デザインの作例は、ページの写真をご覧ください。</span>
+      </p>
+    </div>
+  </section>
+
+  
+  <section id="concept" class="sec sec--tint">
+    <div class="inbox">
+      <h2 class="ttl">
+        <span class="ttl__jp">わたしたちの考え</span>
+        <span class="ttl__en">Our Policy</span>
+      </h2>
+      <div class="cc">
+        <div class="cc__photo ph"><img src="https://images.unsplash.com/photo-1653129579760-4a1f5675f9d1?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8N3x8bmFpbCUyMHNhbG9uJTIwaGFuZHMlMjBjbG9zZXVwfGVufDF8MHx8fDE3ODcyNzQ3MTV8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="施術の様子 or 店内" loading="lazy" decoding="async"></div>
+        <div class="cc__text fade-up">
+          <h3 class="cc__decl">
+            <span class="np">急がず、</span><span class="np">ひとつずつ仕上げます。</span>
+          </h3>
+          <p class="lead">
+            <span class="np">爪はひとりずつ違います。</span><span class="np">薄い方、割れやすい方、</span><span class="np">水仕事の多い方もいらっしゃいます。</span><span class="np">その日の状態を見て、</span><span class="np">厚みや長さの見当をお伝えしてから、</span><span class="np">手を動かします。</span><span class="np">気になることは途中でもお声がけください。</span>
+          </p>
+          <p class="lead">
+            <span class="np">英語での対応もしています。</span><span class="np">日本語でも英語でも、</span><span class="np">希望の色や形、苦手なことまで</span><span class="np">遠慮なくお話しください。</span><span class="np">伝わったことを確かめながら進めます。</span>
           </p>
         </div>
       </div>
-      <ul class="promise">
-        <li><span class="np">ご予約時に、施術内容と</span><span class="np">所要時間の目安、</span><span class="np">料金をお伝えします。</span><span class="np">当日になって変わることは</span><span class="np">ありません。</span></li>
-        <li><span class="np">当日に内容を変えたいときは、</span><span class="np">その場でご相談ください。</span><span class="np">所要時間が変わる場合は</span><span class="np">先にお伝えします。</span></li>
-        <li><span class="np">キャンセルや日時の変更は、</span><span class="np">分かった時点でお電話ください。</span><span class="np">早いほど助かります。</span></li>
-      </ul>
     </div>
   </section>
 
   
-  <section id="about" class="band">
-    <div class="band__inner">
-      <div class="hd">
-        <span class="hd__en">ABOUT</span>
-        <h2><span class="np">当店の</span><span class="np">考え方</span></h2>
-      </div>
-      <p class="lead">
-        <span class="np">爪のかたちも、暮らしかたも、</span><span class="np">一人ずつ違います。</span><span class="np">流行の形をそのまま</span><span class="np">おすすめすることはしません。</span><span class="np">お仕事や普段の手の使いかたを</span><span class="np">うかがってから、</span><span class="np">無理なく続けられる</span><span class="np">仕上がりをご提案します。</span>
-      </p>
-      <div class="pledges">
-        <div class="pledge">
-          <span class="pledge__no">一</span>
-          <h3><span class="np">時間を</span><span class="np">守ります</span></h3>
-          <p><span class="np">お伝えした所要時間を</span><span class="np">超えそうなときは、</span><span class="np">途中でお知らせします。</span></p>
-        </div>
-        <div class="pledge">
-          <span class="pledge__no">二</span>
-          <h3><span class="np">英語でも</span><span class="np">ご案内します</span></h3>
-          <p><span class="np">店名のとおり、</span><span class="np">英語での接客に</span><span class="np">対応しています。</span><span class="np">日本語でも同じようにご案内します。</span></p>
-        </div>
-        <div class="pledge">
-          <span class="pledge__no">三</span>
-          <h3><span class="np">ご希望を先にうかがいます</span></h3>
-          <p><span class="np">どんな仕上がりにしたいかを</span><span class="np">先にうかがってから、</span><span class="np">できることとできないことを</span><span class="np">正直にお伝えします。</span></p>
-        </div>
-        <div class="pledge">
-          <span class="pledge__no">四</span>
-          <h3><span class="np">爪の状態を</span><span class="np">見てから</span></h3>
-          <p><span class="np">爪や指先の状態を拝見し、</span><span class="np">その日に無理のない施術を</span><span class="np">ご提案します。</span></p>
-        </div>
-      </div>
-      <div class="strip">
-        <div class="ph"><img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Mnx8bmFpbCUyMHNhbG9ufGVufDF8MHx8fDE3ODcyMzY4OTh8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="店内" loading="lazy" decoding="async"></div>
-        <div class="ph"><img src="https://images.unsplash.com/photo-1667207229735-266c430cca15?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Nnx8bmFpbCUyMHNhbG9uJTIwaGFuZHMlMjBjbG9zZXVwfGVufDF8MHx8fDE3ODcyNjM5NTR8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="手元" loading="lazy" decoding="async"></div>
-        <div class="ph"><img src="https://images.unsplash.com/photo-1667242197579-10b000f004da?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8M3x8bmFpbCUyMHNhbG9uJTIwcHJvZHVjdHxlbnwxfDB8fHwxNzg3MjM2ODgzfDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="商品" loading="lazy" decoding="async"></div>
-      </div>
-    </div>
-  </section>
-
-  
-  <section id="person" class="band">
-    <div class="band__inner">
-      <div class="hd">
-        <span class="hd__en">STAFF</span>
-        <h2><span class="np">ご予約と</span><span class="np">アクセス</span></h2>
-      </div>
-      <div class="person">
-        <div class="person__photo ph"><img src="https://images.unsplash.com/photo-1633394443519-985dc90457db?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8M3x8bmFpbCUyMHNhbG9uJTIwcG9ydHJhaXR8ZW58MXwxfHx8MTc4NzIzNjg5MXww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="店主（作業中の横顔で可）" loading="lazy" decoding="async"></div>
-        <div class="person__body">
-          <p class="person__name">
-            スタッフ
-            <span class="person__role">ネイリスト</span>
-          </p>
-          <dl>
-            <div>
-              <dt>店名</dt>
-              <dd><span class="np">Tokyo Nail Salon Top Coat</span><span class="np">- English Speaking</span></dd>
-            </div>
-            <div>
-              <dt>所在地</dt>
-              <dd><span class="np">東京都世田谷区</span><span class="np">北沢</span><span class="np">（詳しい番地はお問い合わせください）</span></dd>
-            </div>
-            <div>
-              <dt>営業時間</dt>
-              <dd><span class="np">10時00分〜21時00分</span><span class="np">（年中無休）</span></dd>
-            </div>
-            <div>
-              <dt>定休日</dt>
-              <dd><span class="np">なし</span><span class="np">（臨時休業の場合は</span><span class="np">お電話でご案内します）</span></dd>
-            </div>
-            <div>
-              <dt>ご予約</dt>
-              <dd><span class="np">お電話または</span><span class="np">メールにて</span><span class="np">承ります</span></dd>
-            </div>
-            <div>
-              <dt>対応言語</dt>
-              <dd><span class="np">日本語・英語</span></dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  
-  <section id="access" class="band">
-    <div class="band__inner">
-      <div class="hd">
-        <span class="hd__en">ACCESS</span>
-        <h2><span class="np">アクセスと</span><span class="np">ご来店</span></h2>
-      </div>
+  <section id="access" class="sec">
+    <div class="inbox">
+      <h2 class="ttl">
+        <span class="ttl__jp">アクセス</span>
+        <span class="ttl__en">Access</span>
+      </h2>
       <div class="access">
-        <div class="access__body">
-          <dl>
+        <div class="access__body fade-up">
+          <dl class="info">
             <div><dt>住所</dt><dd>4th floor, ２丁目-２７-2 北沢 世田谷区 東京都日本</dd></div>
-            <div><dt>電話</dt><dd>070-4490-3918</dd></div>
-            <div><dt>営業時間</dt><dd>10:00〜21:00</dd></div>
+            <div><dt>電話</dt><dd class="num">070-4490-3918</dd></div>
+            <div><dt>営業時間</dt><dd class="num">10:00〜21:00</dd></div>
             <div><dt>定休日</dt><dd>—</dd></div>
-            <div><dt>最寄り</dt><dd>—</dd></div>
-            <div><dt>席数</dt><dd>施術席／ハンド・フット対応</dd></div>
-            <div><dt>そのほか</dt><dd><span class="np">店内は禁煙です。</span><span class="np">お子さま連れについては、</span><span class="np">施術内容により</span><span class="np">ご相談をお願いします。</span><span class="np">事前にお電話でお知らせください。</span></dd></div>
+            <div><dt>アクセス</dt><dd>—</dd></div>
+            <div><dt>駐車場</dt><dd></dd></div>
           </dl>
         </div>
-        <div class="ph"><img src="https://images.unsplash.com/photo-1774571872279-59580ca46d45?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8NXx8bmFpbCUyMHNhbG9uJTIwc3RvcmVmcm9udCUyMGV4dGVyaW9yfGVufDF8MHx8fDE3ODcyMzY4ODR8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="外観" loading="lazy" decoding="async"></div>
+        <div class="info__map ph"><img src="https://images.unsplash.com/photo-1568072954488-bff1c4db0956?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8NXx8bmFpbCUyMHNhbG9uJTIwc3RvcmVmcm9udCUyMGV4dGVyaW9yfGVufDF8MHx8fDE3ODcyNzQ3MjB8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="外観" loading="lazy" decoding="async"></div>
       </div>
+    </div>
+  </section>
+
+  
+  <section id="reserve" class="sec sec--tint">
+    <div class="inbox-min reserve fade-up">
+      <h2 class="ttl ttl--c">
+        <span class="ttl__jp">ご予約</span>
+        <span class="ttl__en">Reservation</span>
+      </h2>
+      <p class="lead" style="max-width:30em;margin:0 auto">
+        <span class="np">ご予約とご相談は、</span><span class="np">お電話またはメールで承ります。</span><span class="np">ご希望の日時とデザインをお知らせください。</span>
+      </p>
+      <div class="reserve__btns">
+        <a class="btn-lg btn-lg--fill" href="#reserve"><span>WEB予約</span></a>
+        <a class="btn-lg" href="tel:0300000000"><span>お電話で予約</span></a>
+      </div>
+      <p class="reserve__tel">
+        070-4490-3918
+      </p>
     </div>
   </section>
 
 </main>
 
 <footer>
-  <span class="brand">
-    <span class="seal" aria-hidden="true">爪</span>
-    <span class="brand__name">
-      Tokyo Nail Salon Top Coat - English Speaking
-      <span class="brand__en">TOP COAT</span>
+  <div class="inbox">
+    <span class="brand">
+      <span class="brand__en">Tokyo Nail Salon Top Coat - English Speaking</span>
+      <span class="brand__jp">Tokyo Nail Salon Top Coat - English Speaking</span>
     </span>
-  </span>
-  <p>
-    4th floor, ２丁目-２７-2 北沢 世田谷区 東京都日本<br>070-4490-3918 10:00〜21:00
-  </p>
-  <div class="sns">
-    <a href="#reserve" aria-label="Instagram">Ig</a>
-    <a href="#reserve" aria-label="X">X</a>
-    <a href="#reserve" aria-label="LINE">Ln</a>
+    <p>
+      4th floor, ２丁目-２７-2 北沢 世田谷区 東京都日本<br>070-4490-3918 10:00〜21:00
+    </p>
+    <small>© Tokyo Nail Salon Top Coat - English Speaking</small>
   </div>
-  <small>© TOP COAT</small>
 </footer>
 
 <div class="sp-bar">
-  <a href="tel:0300000000">電話する</a>
-  <a href="#reserve">席を予約</a>
+  <a href="tel:0300000000">電話</a>
+  <a href="#reserve">WEB予約</a>
 </div>
 
 <script>
+  // スクロール出現（IntersectionObserver）— 文字ブロックだけ。写真は隠さない
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll('.fade-up').forEach(function(el){ io.observe(el); });
+
 </script>
-<p class="photo-credit" style="font-size:11px;text-align:center;padding:12px 16px;margin:0">Photo by <a href="https://unsplash.com/@eprouzet?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Eric Prouzet</a>、<a href="https://unsplash.com/@gregtrow?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Greg Trowman</a>、<a href="https://unsplash.com/@yosuke_ota?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Yosuke Ota</a>、<a href="https://unsplash.com/@luandmario?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Maria Lupan</a>、<a href="https://unsplash.com/@iprefermike?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Mike Cox</a>、<a href="https://unsplash.com/@kouskkn?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Koushalya Karthikeyan</a> on <a href="https://unsplash.com/?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></p>
+<p class="photo-credit" style="font-size:11px;text-align:center;padding:12px 16px;margin:0">Photo by <a href="https://unsplash.com/@yosuke_ota?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Yosuke Ota</a>、<a href="https://unsplash.com/@phuongtography?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Phuong Nguyen</a>、<a href="https://unsplash.com/@eliiesh?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Ellie Eshaghi</a>、<a href="https://unsplash.com/@metinozer?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Metin Ozer</a> on <a href="https://unsplash.com/?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></p>
 <section id="privacy-policy" class="legal">
   <div class="narrow">
     <h2>プライバシーポリシー</h2>
